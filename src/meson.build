@@ -4,7 +4,7 @@ cfg_pamac_classic.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('
 cfg_pamac_classic.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_classic.set('RELEASE_NAME', 'pamac')
 cfg_pamac_classic.set('PREFIX', get_option('prefix'))
-cfg_pamac_classic.set('VERSION', '6.7.1')
+cfg_pamac_classic.set('VERSION', '6.7.2')
 cfg_pamac_classic.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(
@@ -66,7 +66,7 @@ pamacclassic_library = shared_library('pamacclassic', pamac_classic_sources,
     vala_args: pamac_classic_vala_args,
     c_args: pamac_classic_c_args,
     link_args: pamac_classic_link_args,
-    version: '6.7.1',
+    version: '6.7.2',
     soversion: '6',
     install: true,
     install_dir: [true, true, true])
@@ -84,7 +84,7 @@ pamac_classic_requires += ['glib-2.0']
 pamac_classic_requires += ['gobject-2.0']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : pamacclassic_library,
-	version : '6.7.1',
+	version : '6.7.2',
 	name : 'pamacclassic',
 	filebase : 'pamacclassic',
 	description : 'pamacclassic',
