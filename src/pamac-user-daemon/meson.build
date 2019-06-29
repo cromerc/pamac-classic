@@ -4,10 +4,13 @@ cfg_pamac_user_daemon.set('PKGDATADIR', join_paths(get_option('prefix'),get_opti
 cfg_pamac_user_daemon.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_user_daemon.set('RELEASE_NAME', 'pamac')
 cfg_pamac_user_daemon.set('PREFIX', get_option('prefix'))
-cfg_pamac_user_daemon.set('VERSION', '6.7.0')
+cfg_pamac_user_daemon.set('VERSION', '6.7.1')
 cfg_pamac_user_daemon.set('TESTSRCDIR', meson.source_root())
 
-cfgfile_2 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_user_daemon)
+cfgfile_2 = configure_file(
+	input: 'Config.vala.base',
+	output: 'Config.vala',
+	configuration: cfg_pamac_user_daemon)
 
 pamac_user_daemon_deps = [gtk_3_0_dep]
 pamac_user_daemon_deps += [json_glib_1_0_dep]
@@ -43,5 +46,12 @@ endif
 pamac_user_daemon_link_args = ['-rdynamic']
 pamac_user_daemon_hfolders = ['../../src']
 
-executable('pamac-user-daemon',pamac_user_daemon_sources,dependencies: pamac_user_daemon_deps,vala_args: pamac_user_daemon_vala_args,c_args: pamac_user_daemon_c_args,link_args: pamac_user_daemon_link_args,link_with: pamac_user_daemon_dependencies,include_directories: include_directories(pamac_user_daemon_hfolders),install: true)
+executable('pamac-user-daemon',pamac_user_daemon_sources,
+    dependencies: pamac_user_daemon_deps,
+    vala_args: pamac_user_daemon_vala_args,
+    c_args: pamac_user_daemon_c_args,
+    link_args: pamac_user_daemon_link_args,
+    link_with: pamac_user_daemon_dependencies,
+    include_directories: include_directories(pamac_user_daemon_hfolders),
+    install: true)
 

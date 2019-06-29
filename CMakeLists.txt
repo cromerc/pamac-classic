@@ -55,9 +55,27 @@ set(MODULES_TO_CHECK ${MODULES_TO_CHECK} gobject-2.0)
 pkg_check_modules(DEPS REQUIRED ${MODULES_TO_CHECK})
 
 
-find_program ( WHERE_GRESOURCE glib-compile-resources )
-if ( NOT WHERE_GRESOURCE )
-	MESSAGE(FATAL_ERROR "Error! GLIB-COMPILE-RESOURCES is not installed.")
+find_program ( WHERE_glib_compile_resources glib-compile-resources )
+if ( NOT WHERE_glib_compile_resources )
+	MESSAGE(FATAL_ERROR "Error! external program 'glib-compile-resources' is not installed.")
+endif()
+
+find_program ( WHERE_gtk_update_icon_cache gtk-update-icon-cache )
+if ( NOT WHERE_gtk_update_icon_cache )
+	find_program ( WHERE_gtk_update_icon_cache gtk-update-icon-cache.3.0 )
+	if ( NOT WHERE_gtk_update_icon_cache )
+		MESSAGE(FATAL_ERROR "Error! none of the external programs 'gtk-update-icon-cache', 'gtk-update-icon-cache.3.0',  are installed.")
+	endif()
+endif()
+
+find_program ( WHERE_glib_compile_schemas glib-compile-schemas )
+if ( NOT WHERE_glib_compile_schemas )
+	MESSAGE(FATAL_ERROR "Error! external program 'glib-compile-schemas' is not installed.")
+endif()
+
+find_program ( WHERE_g_ir_compiler g-ir-compiler )
+if ( NOT WHERE_g_ir_compiler )
+	MESSAGE(FATAL_ERROR "Error! external program 'g-ir-compiler' is not installed.")
 endif()
 
 add_subdirectory(src/vapis)

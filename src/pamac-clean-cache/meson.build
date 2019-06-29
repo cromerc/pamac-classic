@@ -4,10 +4,13 @@ cfg_pamac_clean_cache.set('PKGDATADIR', join_paths(get_option('prefix'),get_opti
 cfg_pamac_clean_cache.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_clean_cache.set('RELEASE_NAME', 'pamac')
 cfg_pamac_clean_cache.set('PREFIX', get_option('prefix'))
-cfg_pamac_clean_cache.set('VERSION', '6.7.0')
+cfg_pamac_clean_cache.set('VERSION', '6.7.1')
 cfg_pamac_clean_cache.set('TESTSRCDIR', meson.source_root())
 
-cfgfile_4 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_clean_cache)
+cfgfile_4 = configure_file(
+	input: 'Config.vala.base',
+	output: 'Config.vala',
+	configuration: cfg_pamac_clean_cache)
 
 pamac_clean_cache_deps = [gtk_3_0_dep]
 pamac_clean_cache_deps += [json_glib_1_0_dep]
@@ -39,5 +42,12 @@ endif
 pamac_clean_cache_link_args = ['-rdynamic']
 pamac_clean_cache_hfolders = ['../../src']
 
-executable('pamac-clean-cache',pamac_clean_cache_sources,dependencies: pamac_clean_cache_deps,vala_args: pamac_clean_cache_vala_args,c_args: pamac_clean_cache_c_args,link_args: pamac_clean_cache_link_args,link_with: pamac_clean_cache_dependencies,include_directories: include_directories(pamac_clean_cache_hfolders),install: true)
+executable('pamac-clean-cache',pamac_clean_cache_sources,
+    dependencies: pamac_clean_cache_deps,
+    vala_args: pamac_clean_cache_vala_args,
+    c_args: pamac_clean_cache_c_args,
+    link_args: pamac_clean_cache_link_args,
+    link_with: pamac_clean_cache_dependencies,
+    include_directories: include_directories(pamac_clean_cache_hfolders),
+    install: true)
 

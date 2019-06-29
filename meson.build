@@ -7,6 +7,10 @@ DISABLE_AUR = (get_option('DISABLE_AUR') != '')
 
 add_global_arguments('-DGETTEXT_PACKAGE="pamac"',language: 'c')
 
+find_program ('glib-compile-resources')
+find_program ('gtk-update-icon-cache', 'gtk-update-icon-cache.3.0')
+find_program ('glib-compile-schemas')
+find_program ('g-ir-compiler')
 gdk_3_0_dep = dependency('gdk-3.0')
 gtk_3_0_dep = dependency('gtk+-3.0')
 json_glib_1_0_dep = dependency('json-glib-1.0')
@@ -26,6 +30,7 @@ gobject_2_0_dep = dependency('gobject-2.0')
 subdir('po')
 cfg_dbus_data = configuration_data()
 cfg_dbus_data.set ('DBUS_PREFIX',get_option('prefix'))
+meson.add_install_script('meson_scripts/update_icon.sh')
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-system.service'))
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-cleancache.service'))
@@ -72,10 +77,10 @@ dbus_cfg_org_pamac_user_service = configure_file(input: 'data/dbus/org.pamac.use
 install_data(dbus_cfg_org_pamac_user_service,install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','services'))
 install_data( 'data/dbus/org.pamac.system.conf',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','system.d'))
 install_data('data/org.pamac.main.gschema.xml', install_dir: join_paths(get_option('prefix'),get_option('datadir'), 'glib-2.0', 'schemas'))
-meson.add_install_script('meson_scripts/install_schemas.py')
+meson.add_install_script('meson_scripts/install_schemas.sh')
 if not DISABLE_AUR
 	install_data('data/org.pamac.aur.gschema.xml', install_dir: join_paths(get_option('prefix'),get_option('datadir'), 'glib-2.0', 'schemas'))
-	meson.add_install_script('meson_scripts/install_schemas.py')
+	meson.add_install_script('meson_scripts/install_schemas.sh')
 endif
 install_data('data/icons/16x16/apps/system-software-install.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/16x16/apps'))
 install_data('data/icons/24x24/status/pamac-tray-no-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))

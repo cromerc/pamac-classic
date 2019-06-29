@@ -4,10 +4,13 @@ cfg_pamac_manager.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('
 cfg_pamac_manager.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_manager.set('RELEASE_NAME', 'pamac')
 cfg_pamac_manager.set('PREFIX', get_option('prefix'))
-cfg_pamac_manager.set('VERSION', '6.7.0')
+cfg_pamac_manager.set('VERSION', '6.7.1')
 cfg_pamac_manager.set('TESTSRCDIR', meson.source_root())
 
-cfgfile_6 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_manager)
+cfgfile_6 = configure_file(
+	input: 'Config.vala.base',
+	output: 'Config.vala',
+	configuration: cfg_pamac_manager)
 
 pamac_manager_deps = [gtk_3_0_dep]
 pamac_manager_deps += [json_glib_1_0_dep]
@@ -42,6 +45,13 @@ endif
 pamac_manager_link_args = ['-rdynamic']
 pamac_manager_hfolders = ['../../src']
 
-executable('pamac-manager',pamac_manager_sources,dependencies: pamac_manager_deps,vala_args: pamac_manager_vala_args,c_args: pamac_manager_c_args,link_args: pamac_manager_link_args,link_with: pamac_manager_dependencies,include_directories: include_directories(pamac_manager_hfolders),install: true)
+executable('pamac-manager',pamac_manager_sources,
+    dependencies: pamac_manager_deps,
+    vala_args: pamac_manager_vala_args,
+    c_args: pamac_manager_c_args,
+    link_args: pamac_manager_link_args,
+    link_with: pamac_manager_dependencies,
+    include_directories: include_directories(pamac_manager_hfolders),
+    install: true)
 
 meson.add_install_script('sh', '-c', 'ln -sf pamac-manager ${DESTDIR}/${MESON_INSTALL_PREFIX}/bin/pamac-updater')

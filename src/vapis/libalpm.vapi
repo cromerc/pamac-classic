@@ -38,9 +38,9 @@ namespace Alpm {
 	}
 	public int capabilities();
 
-	public unowned Package? find_satisfier(Alpm.List<Package> pkgs, string depstring);
+	public unowned Package? find_satisfier(Alpm.List<weak Package> pkgs, string depstring);
 
-	public unowned Package? pkg_find(Alpm.List<Package> haystack, string needle);
+	public unowned Package? pkg_find(Alpm.List<weak Package> haystack, string needle);
 
 	public int pkg_vercmp(string a, string b);
 
@@ -193,7 +193,7 @@ namespace Alpm {
 		public unowned DB localdb {
 				[CCode (cname = "alpm_get_localdb")] get;
 		}
-		public unowned Alpm.List<unowned DB> syncdbs {
+		public unowned Alpm.List<weak DB> syncdbs {
 				[CCode (cname = "alpm_get_syncdbs")] get;
 		}
 
@@ -380,7 +380,7 @@ namespace Alpm {
 
 		public unowned Package? get_pkg(string name);
 		public unowned Group? get_group(string name);
-		public Alpm.List<unowned Package> search(Alpm.List<string> needles);
+		public Alpm.List<weak Package> search(Alpm.List<weak string> needles);
 
 		public int check_pgp_signature(out SigList siglist);
 	}
@@ -550,7 +550,7 @@ namespace Alpm {
 		public Alpm.List<string> compute_optionalfor();
 
 		[CCode (cname = "alpm_sync_newversion")]
-		public unowned Package? sync_newversion(Alpm.List<DB> dbs);
+		public unowned Package? sync_newversion(Alpm.List<weak DB> dbs);
 
 		public int check_pgp_signature(out SigList siglist);
 	}
