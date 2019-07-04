@@ -105,13 +105,6 @@ VERSION
 SOVERSION
 	6 )
 
-add_custom_command (
-	TARGET pamacclassic
-	POST_BUILD
-	COMMAND g-ir-compiler --shared-library=libpamacclassic "${CMAKE_CURRENT_BINARY_DIR}/pamacclassic-1.0.gir"  --output="${CMAKE_CURRENT_BINARY_DIR}/pamacclassic-1.0.typelib"
-)
-
-
 install(TARGETS
 	pamacclassic
 LIBRARY DESTINATION
@@ -131,16 +124,6 @@ install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/pamacclassic.deps
 DESTINATION
 	${CMAKE_INSTALL_DATAROOTDIR}/vala/vapi/
-)
-install(FILES
-	${CMAKE_CURRENT_BINARY_DIR}/pamacclassic-1.0.gir
-DESTINATION
-	${CMAKE_INSTALL_DATAROOTDIR}/gir-1.0/
-)
-install(FILES
-	${CMAKE_CURRENT_BINARY_DIR}/pamacclassic-1.0.typelib
-DESTINATION
-	lib/girepository-1.0/
 )
 install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/pamacclassic.pc
