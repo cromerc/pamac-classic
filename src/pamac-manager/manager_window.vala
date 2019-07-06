@@ -1990,10 +1990,10 @@ namespace Pamac {
 				"icon_name", "system-software-install",
 				"logo_icon_name", "system-software-install",
 				"comments", dgettext (null, "A Gtk3 frontend for libalpm"),
-				"copyright", "Copyright © 2017 Chris Cromer\nCopyright © 2017 Guillaume Benoit",
+				"copyright", "Copyright © 2017-2019 Chris Cromer\nCopyright © 2017 Guillaume Benoit",
 				"version", VERSION,
 				"license_type", Gtk.License.GPL_3_0,
-				"website", "http://github.com/cromnix/pamac-classic");
+				"website", "https://git.cromer.cl/cromer/pamac-classic");
 		}
 
 		[GtkCallback]
