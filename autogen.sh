@@ -12,6 +12,5 @@ popd
 autovala refresh
 # Remove unused folders and files made by autovala
 rm -rf ./{install,packages,doc} ./data/{local,bash_completion} ./.hgignore ./.bzrignore
-# Generate the cmake and meson build files
-autovala cmake
+# Generate the meson build files
 autovala meson
