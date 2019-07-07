@@ -1,7 +1,7 @@
 /*
  *  pamac-vala
  *
- *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
+ *  Copyright (C) 2017-2019 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2014-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -17,9 +17,6 @@
  *  You should have received a get of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-// i18n
-const string GETTEXT_PACKAGE = "pamac";
 
 Pamac.SystemDaemon system_daemon;
 MainLoop loop;
@@ -140,7 +137,7 @@ namespace Pamac {
 			refreshed = false;
 		}
 
-		public void set_environment_variables (HashTable<string,string> variables) {
+		public void set_environment_variables (HashTable<string,string> variables) throws DBusError, IOError {
 			string[] keys = { "HTTP_USER_AGENT",
 							"http_proxy",
 							"https_proxy",
@@ -155,7 +152,7 @@ namespace Pamac {
 			}
 		}
 
-		public ErrorInfos get_current_error () {
+		public ErrorInfos get_current_error () throws DBusError, IOError {
 			return current_error;
 		}
 
@@ -277,7 +274,7 @@ namespace Pamac {
 			return true;
 		}
 
-		public string[] get_mirrors_countries () {
+		public string[] get_mirrors_countries () throws DBusError, IOError {
 			string[] countries = {};
 			try {
 				string countries_str;
@@ -297,7 +294,7 @@ namespace Pamac {
 			return countries;
 		}
 
-		public bool get_lock (GLib.BusName sender) {
+		public bool get_lock (GLib.BusName sender) throws DBusError, IOError {
 			if (lock_id == sender) {
 				return true;
 			} else if (lock_id == "") {
@@ -307,7 +304,7 @@ namespace Pamac {
 			return false;
 		}
 
-		public bool unlock (GLib.BusName sender) {
+		public bool unlock (GLib.BusName sender) throws DBusError, IOError {
 			if (lock_id == sender) {
 				lock_id = new BusName ("");
 				return true;
@@ -354,14 +351,14 @@ namespace Pamac {
 			return authorized;
 		}
 
-		public void start_get_authorization (GLib.BusName sender) {
+		public void start_get_authorization (GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				bool authorized = check_authorization.end (res);
 				get_authorization_finished (authorized);
 			});
 		}
 
-		public void start_save_pamac_config () {
+		public void start_save_pamac_config () throws DBusError, IOError {
 				var pamac_config = new Pamac.Config ();
 				pamac_config.reload ();
 #if DISABLE_AUR
@@ -379,7 +376,7 @@ namespace Pamac {
 			write_alpm_config_finished ((alpm_handle.checkspace == 1));
 		}
 
-		public void start_write_alpm_config (HashTable<string,Variant> new_alpm_conf_, GLib.BusName sender) {
+		public void start_write_alpm_config (HashTable<string,Variant> new_alpm_conf_, GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				bool authorized = check_authorization.end (res);
 				if (authorized ) {
@@ -413,7 +410,7 @@ namespace Pamac {
 			generate_mirrors_list_finished ();
 		}
 
-		public void start_generate_mirrors_list (GLib.BusName sender) {
+		public void start_generate_mirrors_list (GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				bool authorized = check_authorization.end (res);
 				if (authorized) {
@@ -426,7 +423,7 @@ namespace Pamac {
 			});
 		}
 
-		public void clean_cache (uint64 keep_nb, bool only_uninstalled, GLib.BusName sender) {
+		public void clean_cache (uint64 keep_nb, bool only_uninstalled, GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				bool authorized = check_authorization.end (res);
 				if (authorized) {
@@ -446,7 +443,7 @@ namespace Pamac {
 			});
 		}
 
-		public void start_write_mirrors_config (HashTable<string,Variant> new_mirrors_conf, GLib.BusName sender) {
+		public void start_write_mirrors_config (HashTable<string,Variant> new_mirrors_conf, GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				var mirrors_config = new MirrorsConfig ("/etc/pacman-mirrors.conf");
 				bool authorized = check_authorization.end (res);
@@ -458,7 +455,7 @@ namespace Pamac {
 			});
 		}
 
-		public void start_set_pkgreason (string pkgname, uint reason, GLib.BusName sender) {
+		public void start_set_pkgreason (string pkgname, uint reason, GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				bool authorized = check_authorization.end (res);
 				if (authorized) {
@@ -535,7 +532,7 @@ namespace Pamac {
 			}
 		}
 
-		public void start_refresh (bool force, GLib.BusName sender) {
+		public void start_refresh (bool force, GLib.BusName sender) throws DBusError, IOError {
 			if (lock_id != sender) {
 				refresh_finished (false);
 				return;
@@ -644,7 +641,7 @@ namespace Pamac {
 		private async void check_aur_dep_list (string[] pkgnames) {
 			string[] dep_types = {"Depends", "MakeDepends", "CheckDepends"};
 			string[] dep_to_check = {};
-			Json.Array results = yield AUR.multiinfo (pkgnames);
+			Json.Array results = yield multiinfo (pkgnames);
 			results.foreach_element ((array, index, node) => {
 				unowned Json.Object? pkg_info = node.get_object ();
 				// create fake db desc file
@@ -722,12 +719,12 @@ namespace Pamac {
 										try {
 											dos.put_string ("%s\n".printf (_node.get_string ()));
 										} catch (GLib.Error e) {
-											GLib.stderr.printf("%s\n", e.message);
+											stderr.printf("%s\n", e.message);
 										}
 									});
 									dos.put_string ("\n");
 								} catch (GLib.Error e) {
-									GLib.stderr.printf("%s\n", e.message);
+									stderr.printf("%s\n", e.message);
 								}
 							}
 							// provides
@@ -739,12 +736,12 @@ namespace Pamac {
 										try {
 											dos.put_string ("%s\n".printf (_node.get_string ()));
 										} catch (GLib.Error e) {
-											GLib.stderr.printf("%s\n", e.message);
+											stderr.printf("%s\n", e.message);
 										}
 									});
 									dos.put_string ("\n");
 								} catch (GLib.Error e) {
-									GLib.stderr.printf("%s\n", e.message);
+									stderr.printf("%s\n", e.message);
 								}
 							}
 							// replaces
@@ -756,17 +753,17 @@ namespace Pamac {
 										try {
 											dos.put_string ("%s\n".printf (_node.get_string ()));
 										} catch (GLib.Error e) {
-											GLib.stderr.printf("%s\n", e.message);
+											stderr.printf("%s\n", e.message);
 										}
 									});
 									dos.put_string ("\n");
 								} catch (GLib.Error e) {
-									GLib.stderr.printf("%s\n", e.message);
+									stderr.printf("%s\n", e.message);
 								}
 							}
 						}
 					} catch (GLib.Error e) {
-						GLib.stderr.printf("%s\n", e.message);
+						stderr.printf("%s\n", e.message);
 					}
 				}
 			});
@@ -803,7 +800,10 @@ namespace Pamac {
 				};
 				get_updates_finished (updates);
 			} else {
+#if DISABLE_AUR
+#else
 				string[] local_pkgs = {};
+#endif
 				unowned Alpm.List<unowned Alpm.Package> pkgcache = alpm_handle.localdb.pkgcache;
 				while (pkgcache != null) {
 					unowned Alpm.Package installed_pkg = pkgcache.data;
@@ -842,8 +842,8 @@ namespace Pamac {
 				if (check_aur_updates) {
 					// get aur updates
 					if (!aur_updates_checked) {
-						AUR.multiinfo.begin (local_pkgs, (obj, res) => {
-							aur_updates_results = AUR.multiinfo.end (res);
+						multiinfo.begin (local_pkgs, (obj, res) => {
+							aur_updates_results = multiinfo.end (res);
 							aur_updates_checked = true;
 							var updates = Updates () {
 								is_syncfirst = false,
@@ -899,9 +899,9 @@ namespace Pamac {
 #endif
 
 #if DISABLE_AUR
-		public void start_get_updates () {
+		public void start_get_updates () throws DBusError, IOError {
 #else
-		public void start_get_updates (bool check_aur_updates_) {
+		public void start_get_updates (bool check_aur_updates_) throws DBusError, IOError {
 			check_aur_updates = check_aur_updates_;
 #endif
 			try {
@@ -938,7 +938,13 @@ namespace Pamac {
 					if (errno != 0) {
 						current_error.details = { Alpm.strerror (errno) };
 					}
-					trans_release (lock_id);
+					try {
+						trans_release (lock_id);
+					} catch (IOError e) {
+						stderr.printf ("IOError: %s\n", e.message);
+					} catch (DBusError e) {
+						stderr.printf ("DBusError: %s\n", e.message);
+					}
 					success = false;
 				} else {
 					success = trans_prepare_real ();
@@ -947,7 +953,7 @@ namespace Pamac {
 			trans_prepare_finished (success);
 		}
 
-		public void start_sysupgrade_prepare (bool enable_downgrade_, string[] temporary_ignorepkgs_, GLib.BusName sender) {
+		public void start_sysupgrade_prepare (bool enable_downgrade_, string[] temporary_ignorepkgs_, GLib.BusName sender) throws DBusError, IOError {
 			if (lock_id != sender) {
 				trans_prepare_finished (false);
 				return;
@@ -1162,7 +1168,13 @@ namespace Pamac {
 						break;
 				}
 				current_error.details = (owned) details;
-				trans_release (lock_id);
+				try {
+					trans_release (lock_id);
+				} catch (IOError e) {
+					stderr.printf ("IOError: %s\n", e.message);
+				} catch (DBusError e) {
+					stderr.printf ("DBusError: %s\n", e.message);
+				}
 				success = false;
 			} else {
 				// Search for holdpkg in target list
@@ -1180,7 +1192,13 @@ namespace Pamac {
 				if (found_locked_pkg) {
 					current_error.message = _("Failed to prepare transaction");
 					current_error.details = (owned) details;
-					trans_release (lock_id);
+					try {
+						trans_release (lock_id);
+					} catch (IOError e) {
+						stderr.printf ("IOError: %s\n", e.message);
+					} catch (DBusError e) {
+						stderr.printf ("DBusError: %s\n", e.message);
+					}
 					success = false;
 				}
 			}
@@ -1215,7 +1233,13 @@ namespace Pamac {
 				if (success) {
 					success = trans_prepare_real ();
 				} else {
-					trans_release (lock_id);
+					try {
+						trans_release (lock_id);
+					} catch (IOError e) {
+						stderr.printf ("IOError: %s\n", e.message);
+					} catch (DBusError e) {
+						stderr.printf ("DBusError: %s\n", e.message);
+					}
 				}
 			}
 			trans_prepare_finished (success);
@@ -1378,7 +1402,13 @@ namespace Pamac {
 								}
 								pkgs_to_remove.next ();
 							}
-							trans_release (lock_id);
+							try {
+								trans_release (lock_id);
+							} catch (IOError e) {
+								stderr.printf ("IOError: %s\n", e.message);
+							} catch (DBusError e) {
+								stderr.printf ("DBusError: %s\n", e.message);
+							}
 							try {
 								Process.spawn_command_line_sync ("rm -f %ssync/aur.db".printf (alpm_handle.dbpath));
 							} catch (SpawnError e) {
@@ -1391,7 +1421,13 @@ namespace Pamac {
 							trans_prepare ();
 						}
 					} else {
-						trans_release (lock_id);
+						try {
+							trans_release (lock_id);
+						} catch (IOError e) {
+							stderr.printf ("IOError: %s\n", e.message);
+						} catch (DBusError e) {
+							stderr.printf ("DBusError: %s\n", e.message);
+						}
 					}
 				}
 				if (!success) {
@@ -1408,14 +1444,14 @@ namespace Pamac {
 										string[] to_install_,
 										string[] to_remove_,
 										string[] to_load_,
-										GLib.BusName sender) {
+										GLib.BusName sender) throws DBusError, IOError {
 #else
 		public void start_trans_prepare (Alpm.TransFlag flags_,
 										string[] to_install_,
 										string[] to_remove_,
 										string[] to_load_,
 										string[] to_build_,
-										GLib.BusName sender) {
+										GLib.BusName sender) throws DBusError, IOError {
 #endif
 			if (lock_id != sender) {
 				trans_prepare_finished (false);
@@ -1451,14 +1487,14 @@ namespace Pamac {
 #endif
 		}
 
-		public void choose_provider (int provider) {
+		public void choose_provider (int provider) throws DBusError, IOError {
 			provider_mutex.lock ();
 			choosen_provider = provider;
 			provider_cond.signal ();
 			provider_mutex.unlock ();
 		}
 
-		public TransactionSummary get_transaction_summary () {
+		public TransactionSummary get_transaction_summary () throws DBusError, IOError {
 			UpdateInfos[] to_install = {};
 			UpdateInfos[] to_upgrade = {};
 			UpdateInfos[] to_downgrade = {};
@@ -1502,9 +1538,9 @@ namespace Pamac {
 				to_remove += (owned) infos;
 				pkgs_to_remove.next ();
 			}
-			UpdateInfos[] conflicts_to_remove = {};
 #if DISABLE_AUR
 #else
+			UpdateInfos[] conflicts_to_remove = {};
 			foreach (unowned UpdateInfos infos in aur_conflicts_to_remove){
 				conflicts_to_remove += infos;
 			}
@@ -1540,7 +1576,13 @@ namespace Pamac {
 				current_error.errno = (uint) errno;
 				// cancel the download return an EXTERNAL_DOWNLOAD error
 				if (errno == Alpm.Errno.EXTERNAL_DOWNLOAD && cancellable.is_cancelled ()) {
-					trans_release (lock_id);
+					try {
+						trans_release (lock_id);
+					} catch (IOError e) {
+						stderr.printf ("IOError: %s\n", e.message);
+					} catch (DBusError e) {
+						stderr.printf ("DBusError: %s\n", e.message);
+					}
 					trans_commit_finished (false);
 					return;
 				}
@@ -1595,7 +1637,13 @@ namespace Pamac {
 				}
 				success = false;
 			}
-			trans_release (lock_id);
+			try {
+				trans_release (lock_id);
+			} catch (IOError e) {
+				stderr.printf ("IOError: %s\n", e.message);
+			} catch (DBusError e) {
+				stderr.printf ("DBusError: %s\n", e.message);
+			}
 			to_install_as_dep.foreach_remove ((pkgname, val) => {
 				unowned Alpm.Package? pkg = alpm_handle.localdb.get_pkg (pkgname);
 				if (pkg != null) {
@@ -1607,7 +1655,7 @@ namespace Pamac {
 			trans_commit_finished (success);
 		}
 
-		public void start_trans_commit (GLib.BusName sender) {
+		public void start_trans_commit (GLib.BusName sender) throws DBusError, IOError {
 			check_authorization.begin (sender, (obj, res) => {
 				bool authorized = check_authorization.end (res);
 				if (authorized) {
@@ -1617,13 +1665,19 @@ namespace Pamac {
 						stderr.printf ("Thread Error %s\n", e.message);
 					}
 				} else {
-					trans_release (lock_id);
+					try {
+						trans_release (lock_id);
+					} catch (IOError e) {
+						stderr.printf ("IOError: %s\n", e.message);
+					} catch (DBusError e) {
+						stderr.printf ("DBusError: %s\n", e.message);
+					}
 					trans_commit_finished (false);
 				}
 			});
 		}
 
-		public void trans_release (GLib.BusName sender) {
+		public void trans_release (GLib.BusName sender) throws DBusError, IOError {
 			if (lock_id != sender) {
 				return;
 			}
@@ -1631,7 +1685,7 @@ namespace Pamac {
 			remove_ignorepkgs ();
 		}
 
-		public void trans_cancel (GLib.BusName sender) {
+		public void trans_cancel (GLib.BusName sender) throws DBusError, IOError {
 			if (lock_id != sender) {
 				return;
 			}
@@ -1644,7 +1698,7 @@ namespace Pamac {
 		}
 
 		[DBus (no_reply = true)]
-		public void quit () {
+		public void quit () throws DBusError, IOError {
 			// wait for all tasks to be processed
 			ThreadPool.free ((owned) thread_pool, false, true);
 			loop.quit ();
@@ -2066,8 +2120,10 @@ void on_bus_acquired (DBusConnection conn) {
 
 void main () {
 	// i18n
+	Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, Path.build_filename(Constants.DATADIR,"locale"));
 	Intl.setlocale (LocaleCategory.ALL, "");
-	Intl.textdomain (GETTEXT_PACKAGE);
+	Intl.textdomain(Constants.GETTEXT_PACKAGE);
+	Intl.bind_textdomain_codeset(Constants.GETTEXT_PACKAGE, "utf-8" );
 
 	Bus.own_name (BusType.SYSTEM,
 				"org.pamac.system",

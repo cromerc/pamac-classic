@@ -1,7 +1,7 @@
 /*
  *  alpm_config
  *
- *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
+ *  Copyright (C) 2017-2019 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2014-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -17,6 +17,8 @@
  *  You should have received a get of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+//using Alpm
 
 [Compact]
 class AlpmRepo {
@@ -43,7 +45,7 @@ class AlpmRepo {
 
 }
 
-class AlpmConfig {
+public class AlpmConfig {
 	string conf_path;
 	string? rootdir;
 	string? dbpath;
@@ -330,10 +332,10 @@ class AlpmConfig {
 					}
 				}
 			} catch (GLib.Error e) {
-				GLib.stderr.printf("%s\n", e.message);
+				stderr.printf("%s\n", e.message);
 			}
 		} else {
-			GLib.stderr.printf ("File '%s' doesn't exist.\n", path);
+			stderr.printf ("File '%s' doesn't exist.\n", path);
 		}
 	}
 
@@ -390,10 +392,10 @@ class AlpmConfig {
 				}
 				reload ();
 			} catch (GLib.Error e) {
-				GLib.stderr.printf("%s\n", e.message);
+				stderr.printf("%s\n", e.message);
 			}
 		} else {
-			GLib.stderr.printf ("File '%s' doesn't exist.\n", conf_path);
+			stderr.printf ("File '%s' doesn't exist.\n", conf_path);
 		}
 	}
 
@@ -477,7 +479,7 @@ class AlpmConfig {
 					siglevel_mask |= (Alpm.Signature.Level.DATABASE_MARGINAL_OK | Alpm.Signature.Level.DATABASE_UNKNOWN_OK);
 				}
 			} else {
-				GLib.stderr.printf("unrecognized siglevel: %s\n", conf_string);
+				stderr.printf("unrecognized siglevel: %s\n", conf_string);
 			}
 		}
 		siglevel &= ~Alpm.Signature.Level.USE_DEFAULT;

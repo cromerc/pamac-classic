@@ -4,7 +4,7 @@ cfg_pamac_system_daemon.set('PKGDATADIR', join_paths(get_option('prefix'),get_op
 cfg_pamac_system_daemon.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_system_daemon.set('RELEASE_NAME', 'pamac')
 cfg_pamac_system_daemon.set('PREFIX', get_option('prefix'))
-cfg_pamac_system_daemon.set('VERSION', '6.7.2')
+cfg_pamac_system_daemon.set('VERSION', '7.0.0')
 cfg_pamac_system_daemon.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_7 = configure_file(
@@ -22,13 +22,10 @@ pamac_system_daemon_deps += [gio_2_0_dep]
 pamac_system_daemon_deps += [glib_2_0_dep]
 pamac_system_daemon_deps += [gobject_2_0_dep]
 pamac_system_daemon_sources = [cfgfile_7]
-pamac_system_daemon_sources += ['alpm_config.vala']
-pamac_system_daemon_sources += ['mirrors_config.vala']
-pamac_system_daemon_sources += ['pamac_config.vala']
 pamac_system_daemon_sources += ['system_daemon.vala']
 pamac_system_daemon_vala_args = ['--pkg','posix']
 pamac_system_daemon_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
-pamac_system_daemon_dependencies = [pamacclassic_library]
+pamac_system_daemon_dependencies = [Pamac_library]
 pamac_system_daemon_c_args = []
 if ENABLE_UPDATE_ICON
   pamac_system_daemon_vala_args += ['-D', 'ENABLE_UPDATE_ICON']

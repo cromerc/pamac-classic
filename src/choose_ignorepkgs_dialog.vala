@@ -19,6 +19,7 @@
  */
 
 //using GIO
+//using Gtk
 
 namespace Pamac {
 

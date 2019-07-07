@@ -19,7 +19,7 @@
  */
 
 namespace Pamac {
-	class MirrorsConfig {
+	public class MirrorsConfig {
 		string conf_path;
 
 		public string choosen_generation_method { get; private set; }
@@ -69,10 +69,10 @@ namespace Pamac {
 						}
 					}
 				} catch (Error e) {
-					GLib.stderr.printf("%s\n", e.message);
+					stderr.printf("%s\n", e.message);
 				}
 			} else {
-				GLib.stderr.printf ("File '%s' doesn't exist.\n", path);
+				stderr.printf ("File '%s' doesn't exist.\n", path);
 			}
 		}
 
@@ -121,10 +121,10 @@ namespace Pamac {
 						dos.put_string (new_line);
 					}
 				} catch (GLib.Error e) {
-					GLib.stderr.printf("%s\n", e.message);
+					stderr.printf("%s\n", e.message);
 				}
 			} else {
-				GLib.stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
+				stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
 			}
 		}
 	}

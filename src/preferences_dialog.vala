@@ -1,7 +1,7 @@
 /*
  *  pamac-vala
  *
- *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
+ *  Copyright (C) 2017-2019 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2015-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -117,8 +117,8 @@ namespace Pamac {
 			cache_only_uninstalled_checkbutton.active = transaction.rm_only_uninstalled;
 
 			// Set up terminal
-			terminal_background.set_use_alpha (false);
-			terminal_foreground.set_use_alpha (false);
+			terminal_background.use_alpha = false;
+			terminal_foreground.use_alpha = false;
 			Gdk.RGBA rgba = Gdk.RGBA ();
 			bool tmp = rgba.parse (transaction.terminal_background);
 			terminal_background.rgba = rgba;
@@ -274,10 +274,10 @@ namespace Pamac {
 
 		void on_select_font () {
 			var settings = new Settings ("org.pamac.main");
-			settings.set_string ("terminal-font", terminal_font.get_font_name ());
+			settings.set_string ("terminal-font", terminal_font.get_font ());
 			config_changed();
 			transaction.start_save_pamac_config ();
-			transaction.update_terminal_font (terminal_font.get_font_name ());
+			transaction.update_terminal_font (terminal_font.get_font ());
 		}
 
 #if DISABLE_AUR

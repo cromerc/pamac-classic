@@ -34,10 +34,10 @@ namespace Pamac {
 #else
 		private bool check_aur_updates;
 		private bool aur_updates_checked;
-#endif
 		private Json.Array aur_updates_results;
 		private HashTable<string, Json.Array> aur_search_results;
 		private HashTable<string, Json.Object> aur_infos;
+#endif
 
 		public signal void get_updates_finished (Updates updates);
 
@@ -49,10 +49,16 @@ namespace Pamac {
 			aur_search_results = new HashTable<string, Json.Array> (str_hash, str_equal);
 			aur_infos = new HashTable<string, Json.Object> (str_hash, str_equal);
 #endif
-			refresh_handle ();
+			try {
+				refresh_handle ();
+			} catch (IOError e) {
+				stderr.printf ("IOError: %s\n", e.message);
+			} catch (DBusError e) {
+				stderr.printf ("DBusError: %s\n", e.message);
+			}
 		}
 
-		public void refresh_handle () {
+		public void refresh_handle () throws DBusError, IOError {
 			alpm_config.reload ();
 			alpm_handle = alpm_config.get_handle ();
 			if (alpm_handle == null) {
@@ -67,15 +73,15 @@ namespace Pamac {
 			}
 		}
 
-		public bool get_checkspace () {
+		public bool get_checkspace () throws DBusError, IOError {
 			return alpm_handle.checkspace == 1 ? true : false;
 		}
 
-		public string get_lockfile () {
+		public string get_lockfile () throws DBusError, IOError {
 			return alpm_handle.lockfile;
 		}
 
-		public string[] get_ignorepkgs () {
+		public string[] get_ignorepkgs () throws DBusError, IOError {
 			string[] result = {};
 			unowned Alpm.List<unowned string> ignorepkgs = alpm_handle.ignorepkgs;
 			while (ignorepkgs != null) {
@@ -86,14 +92,14 @@ namespace Pamac {
 			return result;
 		}
 
-		public bool should_hold (string pkgname) {
+		public bool should_hold (string pkgname) throws DBusError, IOError {
 			if (alpm_config.get_holdpkgs ().find_custom (pkgname, strcmp) != null) {
 				return true;
 			}
 			return false;
 		}
 
-		public uint get_pkg_reason (string pkgname) {
+		public uint get_pkg_reason (string pkgname) throws DBusError, IOError {
 			unowned Alpm.Package? pkg = alpm_handle.localdb.get_pkg (pkgname);
 			if (pkg != null) {
 				return pkg.reason;
@@ -101,7 +107,7 @@ namespace Pamac {
 			return 0;
 		}
 
-		public uint get_pkg_origin (string pkgname) {
+		public uint get_pkg_origin (string pkgname) throws DBusError, IOError {
 			unowned Alpm.Package? pkg = alpm_handle.localdb.get_pkg (pkgname);
 			if (pkg != null) {
 				return pkg.origin;
@@ -153,7 +159,7 @@ namespace Pamac {
 			}
 		}
 
-		public async AlpmPackage[] get_installed_pkgs () {
+		public async AlpmPackage[] get_installed_pkgs () throws DBusError, IOError {
 			AlpmPackage[] pkgs = {};
 			unowned Alpm.List<unowned Alpm.Package> pkgcache = alpm_handle.localdb.pkgcache;
 			while (pkgcache != null) {
@@ -164,7 +170,7 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public async AlpmPackage[] get_explicitly_installed_pkgs () {
+		public async AlpmPackage[] get_explicitly_installed_pkgs () throws DBusError, IOError {
 			AlpmPackage[] pkgs = {};
 			unowned Alpm.List<unowned Alpm.Package> pkgcache = alpm_handle.localdb.pkgcache;
 			while (pkgcache != null) {
@@ -177,7 +183,7 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public async AlpmPackage[] get_foreign_pkgs () {
+		public async AlpmPackage[] get_foreign_pkgs () throws DBusError, IOError {
 			AlpmPackage[] pkgs = {};
 			unowned Alpm.List<unowned Alpm.Package> pkgcache = alpm_handle.localdb.pkgcache;
 			while (pkgcache != null) {
@@ -201,7 +207,7 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public async AlpmPackage[] get_orphans () {
+		public async AlpmPackage[] get_orphans () throws DBusError, IOError {
 			AlpmPackage[] pkgs = {};
 			unowned Alpm.List<unowned Alpm.Package> pkgcache = alpm_handle.localdb.pkgcache;
 			while (pkgcache != null) {
@@ -224,11 +230,11 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public AlpmPackage get_installed_pkg (string pkgname) {
+		public AlpmPackage get_installed_pkg (string pkgname) throws DBusError, IOError {
 			return initialise_pkg_struct (alpm_handle.localdb.get_pkg (pkgname));
 		}
 
-		public AlpmPackage find_installed_satisfier (string depstring) {
+		public AlpmPackage find_installed_satisfier (string depstring) throws DBusError, IOError {
 			return initialise_pkg_struct (Alpm.find_satisfier (alpm_handle.localdb.pkgcache, depstring));
 		}
 
@@ -246,7 +252,7 @@ namespace Pamac {
 			return pkg;
 		}
 
-		public AlpmPackage get_sync_pkg (string pkgname) {
+		public AlpmPackage get_sync_pkg (string pkgname) throws DBusError, IOError {
 			return initialise_pkg_struct (get_syncpkg (pkgname));
 		}
 
@@ -264,7 +270,7 @@ namespace Pamac {
 			return pkg;
 		}
 
-		public AlpmPackage find_sync_satisfier (string depstring) {
+		public AlpmPackage find_sync_satisfier (string depstring) throws DBusError, IOError {
 			return initialise_pkg_struct (find_dbs_satisfier (depstring));
 		}
 
@@ -293,7 +299,7 @@ namespace Pamac {
 			return result;
 		}
 
-		public async AlpmPackage[] search_pkgs (string search_string) {
+		public async AlpmPackage[] search_pkgs (string search_string) throws DBusError, IOError {
 			AlpmPackage[] result = {};
 			Alpm.List<unowned Alpm.Package> alpm_pkgs = search_all_dbs (search_string);
 			unowned Alpm.List<unowned Alpm.Package> list = alpm_pkgs;
@@ -323,9 +329,9 @@ namespace Pamac {
 			};
 		}
 
-		public async AURPackage[] search_in_aur (string search_string) {
+		public async AURPackage[] search_in_aur (string search_string) throws DBusError, IOError {
 			if (!aur_search_results.contains (search_string)) {
-				Json.Array pkgs = yield AUR.search (search_string.split (" "));
+				Json.Array pkgs = yield search (search_string.split (" "));
 				aur_search_results.insert (search_string, pkgs);
 			}
 			AURPackage[] result = {};
@@ -340,7 +346,7 @@ namespace Pamac {
 			return result;
 		}
 
-		public async AURPackageDetails get_aur_details (string pkgname) {
+		public async AURPackageDetails get_aur_details (string pkgname) throws DBusError, IOError {
 			string name = "";
 			string version = "";
 			string desc = "";
@@ -362,7 +368,7 @@ namespace Pamac {
 			string[] conflicts = {};
 			var details = AURPackageDetails ();
 			if (!aur_infos.contains (pkgname)) {
-				Json.Array results = yield AUR.multiinfo ({pkgname});
+				Json.Array results = yield multiinfo ({pkgname});
 				if (results.get_length () > 0) {
 					aur_infos.insert (pkgname, results.get_object_element (0));
 				}
@@ -483,7 +489,7 @@ namespace Pamac {
 		}
 #endif
 
-		public string[] get_repos_names () {
+		public string[] get_repos_names () throws DBusError, IOError {
 			string[] repos_names = {};
 			unowned Alpm.List<unowned Alpm.DB> syncdbs = alpm_handle.syncdbs;
 			while (syncdbs != null) {
@@ -494,7 +500,7 @@ namespace Pamac {
 			return repos_names;
 		}
 
-		public async AlpmPackage[] get_repo_pkgs (string repo) {
+		public async AlpmPackage[] get_repo_pkgs (string repo) throws DBusError, IOError {
 			AlpmPackage[] pkgs = {};
 			unowned Alpm.List<unowned Alpm.DB> syncdbs = alpm_handle.syncdbs;
 			while (syncdbs != null) {
@@ -518,7 +524,7 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public string[] get_groups_names () {
+		public string[] get_groups_names () throws DBusError, IOError {
 			string[] groups_names = {};
 			unowned Alpm.List<unowned Alpm.Group> groupcache = alpm_handle.localdb.groupcache;
 			while (groupcache != null) {
@@ -574,7 +580,7 @@ namespace Pamac {
 			return result;
 		}
 
-		public async AlpmPackage[] get_group_pkgs (string groupname) {
+		public async AlpmPackage[] get_group_pkgs (string groupname) throws DBusError, IOError {
 			AlpmPackage[] pkgs = {};
 			Alpm.List<unowned Alpm.Package> alpm_pkgs = group_pkgs (groupname);
 			unowned Alpm.List<unowned Alpm.Package> list = alpm_pkgs;
@@ -586,7 +592,7 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public string[] get_pkg_uninstalled_optdeps (string pkgname) {
+		public string[] get_pkg_uninstalled_optdeps (string pkgname) throws DBusError, IOError {
 			string[] optdeps = {};
 			unowned Alpm.Package? alpm_pkg = alpm_handle.localdb.get_pkg (pkgname);
 			if (alpm_pkg == null) {
@@ -605,7 +611,7 @@ namespace Pamac {
 			return optdeps;
 		}
 
-		public AlpmPackageDetails get_pkg_details (string pkgname) {
+		public AlpmPackageDetails get_pkg_details (string pkgname) throws DBusError, IOError {
 			string name = "";
 			string version = "";
 			string desc = "";
@@ -779,7 +785,7 @@ namespace Pamac {
 			return details;
 		}
 
-		public string[] get_pkg_files (string pkgname) {
+		public string[] get_pkg_files (string pkgname) throws DBusError, IOError {
 			string[] files = {};
 			unowned Alpm.Package? alpm_pkg = alpm_handle.localdb.get_pkg (pkgname);
 			if (alpm_pkg != null) {
@@ -813,7 +819,10 @@ namespace Pamac {
 
 		private int get_updates () {
 			AlpmPackage[] updates_infos = {};
+#if DISABLE_AUR
+#else
 			unowned Alpm.Package? pkg = null;
+#endif
 			unowned Alpm.Package? candidate = null;
 			// use a tmp handle
 			var tmp_handle = alpm_config.get_handle (false, true);
@@ -843,7 +852,10 @@ namespace Pamac {
 					syncdbs.next ();
 				}
 			}
+#if DISABLE_AUR
+#else
 			string[] local_pkgs = {};
+#endif
 			unowned Alpm.List<unowned Alpm.Package> pkgcache = tmp_handle.localdb.pkgcache;
 			while (pkgcache != null) {
 				unowned Alpm.Package installed_pkg = pkgcache.data;
@@ -882,8 +894,8 @@ namespace Pamac {
 			if (check_aur_updates) {
 				// get aur updates
 				if (!aur_updates_checked) {
-					AUR.multiinfo.begin (local_pkgs, (obj, res) => {
-						aur_updates_results = AUR.multiinfo.end (res);
+					multiinfo.begin (local_pkgs, (obj, res) => {
+						aur_updates_results = multiinfo.end (res);
 						aur_updates_checked = true;
 						var updates = Updates () {
 							repos_updates = (owned) updates_infos,
@@ -936,16 +948,16 @@ namespace Pamac {
 #endif
 
 #if DISABLE_AUR
-		public void start_get_updates () {
+		public void start_get_updates () throws DBusError, IOError {
 #else
-		public void start_get_updates (bool check_aur_updates_) {
+		public void start_get_updates (bool check_aur_updates_) throws DBusError, IOError {
 			check_aur_updates = check_aur_updates_;
 #endif
 			new Thread<int> ("get updates thread", get_updates);
 		}
 
 		[DBus (no_reply = true)]
-		public void quit () {
+		public void quit () throws DBusError, IOError {
 			loop.quit ();
 		}
 	// End of Daemon Object
@@ -1020,8 +1032,10 @@ void on_bus_acquired (DBusConnection conn) {
 
 void main () {
 	// i18n
+	Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, Path.build_filename(Constants.DATADIR,"locale"));
 	Intl.setlocale (LocaleCategory.ALL, "");
-	Intl.textdomain (GETTEXT_PACKAGE);
+	Intl.textdomain(Constants.GETTEXT_PACKAGE);
+	Intl.bind_textdomain_codeset(Constants.GETTEXT_PACKAGE, "utf-8" );
 
 	Bus.own_name (BusType.SESSION,
 				"org.pamac.user",

@@ -100,8 +100,11 @@ namespace Pamac {
 		Gtk.Label updated_label;
 		[GtkChild]
 		Gtk.Stack properties_stack;
+#if DISABLE_AUR
+#else
 		[GtkChild]
 		Gtk.StackSwitcher properties_stackswitcher;
+#endif
 		[GtkChild]
 		Gtk.Grid deps_grid;
 		[GtkChild]
@@ -1525,7 +1528,7 @@ namespace Pamac {
 							}
 						}
 					}
-					right_click_menu.popup (null, null, null, event.button, event.time);
+					right_click_menu.popup_at_pointer (event);
 					return true;
 				}
 			}
@@ -1606,7 +1609,7 @@ namespace Pamac {
 							upgrade_item.sensitive = true;
 						}
 					}
-					right_click_menu.popup (null, null, null, event.button, event.time);
+					right_click_menu.popup_at_pointer (event);
 					return true;
 				}
 			}
@@ -1887,12 +1890,11 @@ namespace Pamac {
 			refresh_packages_list ();
 		}
 
-
-		void on_menu_button_toggled () {
 #if ENABLE_HAMBURGER
+		void on_menu_button_toggled () {
 			preferences_button.sensitive = !(transaction_running || sysupgrade_running);
-#endif
 		}
+#endif
 
 		[GtkCallback]
 		void on_history_button_clicked () {
@@ -1902,7 +1904,7 @@ namespace Pamac {
 			}
 			var file = GLib.File.new_for_path ("/var/log/pacman.log");
 			if (!file.query_exists ()) {
-				GLib.stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
+				stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
 			} else {
 				StringBuilder text = new StringBuilder ();
 				try {
@@ -1916,7 +1918,7 @@ namespace Pamac {
 						text.prepend (line + "\n");
 					}
 				} catch (GLib.Error e) {
-					GLib.stderr.printf ("%s\n", e.message);
+					stderr.printf ("%s\n", e.message);
 				}
 				var history_dialog = new HistoryDialog (this);
 				history_dialog.textview.buffer.set_text (text.str, (int) text.len);

@@ -32,7 +32,7 @@ namespace Pamac {
 
 		// Show popup menu on right button
 		void menu_popup (uint button, uint time) {
-			menu.popup (null, null, null, button, time);
+			menu.popup_at_pointer (null);
 		}
 
 		public override void set_tooltip (string info) {

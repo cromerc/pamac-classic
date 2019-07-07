@@ -1,8 +1,8 @@
 ### AutoVala Project ###
 autovala_version: 30
 project_name: pamac
-project_version: 6.7.2
-vala_version: 0.38
+project_version: 7.0.0
+vala_version: 0.44
 
 custom: data/systemd/pamac-system.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
@@ -22,20 +22,20 @@ define: KDE_TRAY
 vapidir: src/vapis
 
 vala_binary: src/pamac-clean-cache/pamac-clean-cache
-*version: 6.7.2
-vala_local_package: pamacclassic
+*version: 7.0.0
+vala_local_package: Pamac
+vala_vapi: ../vapis/libalpm.vapi
 vala_package: posix
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
 *vala_check_package: glib-2.0
-*vala_check_package: gobject-2.0
 *vala_source: clean_cache.vala
-*vala_source: pamac_config.vala
 
 vala_binary: src/pamac-install/pamac-install
-*version: 6.7.2
+*version: 7.0.0
 use_gresource: pamac_installer_gresource_xml
-vala_local_package: pamacclassic
+vala_local_package: Pamac
+vala_vapi: ../vapis/libalpm.vapi
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
 *vala_check_package: gio-2.0
@@ -45,10 +45,11 @@ vala_check_package: json-glib-1.0
 *vala_source: progress_dialog.vala
 
 vala_binary: src/pamac-manager/pamac-manager
-*version: 6.7.2
+*version: 7.0.0
 alias: pamac-updater
 use_gresource: pamac_manager_gresource_xml
-vala_local_package: pamacclassic
+vala_local_package: Pamac
+vala_vapi: ../vapis/libalpm.vapi
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
 *vala_check_package: gio-2.0
@@ -59,8 +60,8 @@ vala_check_package: json-glib-1.0
 *vala_source: manager_window.vala
 
 vala_binary: src/pamac-system-daemon/pamac-system-daemon
-*version: 6.7.2
-vala_local_package: pamacclassic
+*version: 7.0.0
+vala_local_package: Pamac
 vala_package: posix
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
@@ -71,14 +72,11 @@ vala_check_package: polkit-gobject-1
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
-*vala_source: alpm_config.vala
-*vala_source: mirrors_config.vala
-*vala_source: pamac_config.vala
 *vala_source: system_daemon.vala
 
 vala_binary: src/pamac-tray/pamac-tray
-*version: 6.7.2
-vala_local_package: pamacclassic
+*version: 7.0.0
+vala_local_package: Pamac
 vala_package: posix
 vala_check_package: json-glib-1.0
 vala_check_package: libalpm
@@ -96,13 +94,11 @@ vala_source: tray-appindicator.vala
 else
 vala_source: tray-gtk.vala
 end
-*vala_source: alpm_config.vala
-*vala_source: pamac_config.vala
 *vala_source: tray.vala
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
-*version: 6.7.2
-vala_local_package: pamacclassic
+*version: 7.0.0
+vala_local_package: Pamac
 vala_package: posix
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
@@ -111,31 +107,31 @@ vala_check_package: libsoup-2.4
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
-*vala_source: alpm_config.vala
-*vala_source: pamac_config.vala
 *vala_source: user_daemon.vala
 
 
-vala_library: src/pamac-classic
-*version: 6.7.2
-namespace: pamacclassic
+vala_library: src/pamac
+*version: 7.0.0
+*namespace: Pamac
 use_gresource: pamac_transaction_gresource_xml
-vala_package: posix
-vala_check_package: gdk-3.0
-vala_check_package: gtk+-3.0
-vala_check_package: json-glib-1.0
-vala_check_package: libalpm
-vala_check_package: libnotify
-vala_check_package: libsoup-2.4
-vala_check_package: vte-2.91
+*vala_package: posix
+*vala_check_package: atk
+*vala_check_package: cairo
+*vala_check_package: gdk-3.0
+*vala_check_package: gdk-pixbuf-2.0
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
+*vala_check_package: gtk+-3.0
+*vala_check_package: json-glib-1.0
+*vala_check_package: libalpm
+*vala_check_package: libsoup-2.4
+*vala_check_package: pango
+*vala_check_package: vte-2.91
+*vala_check_package: x11
 *c_library: m
-if NOT DISABLE_AUR
-vala_source: aur.vala
-end
 *vala_source: alpm_config.vala
+*vala_source: aur.vala
 *vala_source: choose_ignorepkgs_dialog.vala
 *vala_source: choose_provider_dialog.vala
 *vala_source: common.vala
@@ -166,23 +162,15 @@ end
 *translate: vala src/mirrors_config.vala
 *translate: vala src/package.vala
 *translate: vala src/pamac-clean-cache/clean_cache.vala
-*translate: vala src/pamac-clean-cache/pamac_config.vala
 *translate: vala src/pamac-install/installer.vala
 *translate: vala src/pamac-install/progress_dialog.vala
 *translate: vala src/pamac-manager/history_dialog.vala
 *translate: vala src/pamac-manager/manager.vala
 *translate: vala src/pamac-manager/manager_window.vala
-*translate: vala src/pamac-system-daemon/alpm_config.vala
-*translate: vala src/pamac-system-daemon/mirrors_config.vala
-*translate: vala src/pamac-system-daemon/pamac_config.vala
 *translate: vala src/pamac-system-daemon/system_daemon.vala
-*translate: vala src/pamac-tray/alpm_config.vala
-*translate: vala src/pamac-tray/pamac_config.vala
 *translate: vala src/pamac-tray/tray-appindicator.vala
 *translate: vala src/pamac-tray/tray-gtk.vala
 *translate: vala src/pamac-tray/tray.vala
-*translate: vala src/pamac-user-daemon/alpm_config.vala
-*translate: vala src/pamac-user-daemon/pamac_config.vala
 *translate: vala src/pamac-user-daemon/user_daemon.vala
 *translate: vala src/pamac_config.vala
 *translate: vala src/preferences_dialog.vala

@@ -18,9 +18,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// i18n
-const string GETTEXT_PACKAGE = "pamac";
-
 const string update_icon_name = "pamac-tray-update";
 const string noupdate_icon_name = "pamac-tray-no-update";
 const string noupdate_info = _("Your system is up-to-date");
@@ -28,15 +25,15 @@ const string noupdate_info = _("Your system is up-to-date");
 namespace Pamac {
 	[DBus (name = "org.pamac.user")]
 	interface UserDaemon : Object {
-		public abstract void refresh_handle () throws IOError;
-		public abstract string get_lockfile () throws IOError;
+		public abstract void refresh_handle () throws DBusError, IOError;
+		public abstract string get_lockfile () throws DBusError, IOError;
 #if DISABLE_AUR
-		public abstract void start_get_updates () throws IOError;
+		public abstract void start_get_updates () throws DBusError, IOError;
 #else
-		public abstract void start_get_updates (bool check_aur_updates) throws IOError;
+		public abstract void start_get_updates (bool check_aur_updates) throws DBusError, IOError;
 #endif
 		[DBus (no_reply = true)]
-		public abstract void quit () throws IOError;
+		public abstract void quit () throws DBusError, IOError;
 		public signal void get_updates_finished (Updates updates);
 	}
 
@@ -71,6 +68,8 @@ namespace Pamac {
 					daemon.quit ();
 				} catch (IOError e) {
 					stderr.printf ("IOError: %s\n", e.message);
+				} catch (DBusError e) {
+					stderr.printf ("DBusError: %s\n", e.message);
 				}
 			}
 		}
@@ -132,6 +131,8 @@ namespace Pamac {
 #endif
 				} catch (IOError e) {
 					stderr.printf ("IOError: %s\n", e.message);
+				} catch (DBusError e) {
+					stderr.printf ("DBusError: %s\n", e.message);
 				}
 			}
 			return true;
@@ -233,6 +234,8 @@ namespace Pamac {
 						daemon.refresh_handle ();
 					} catch (IOError e) {
 						stderr.printf ("IOError: %s\n", e.message);
+					} catch (DBusError e) {
+						stderr.printf ("DBusError: %s\n", e.message);
 					}
 					check_updates ();
 				}
@@ -274,8 +277,10 @@ namespace Pamac {
 
 		public override void startup () {
 			// i18n
-			Intl.textdomain ("pamac");
+			Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, Path.build_filename(Constants.DATADIR,"locale"));
 			Intl.setlocale (LocaleCategory.ALL, "");
+			Intl.textdomain(Constants.GETTEXT_PACKAGE);
+			Intl.bind_textdomain_codeset(Constants.GETTEXT_PACKAGE, "utf-8" );
 
 			var pamac_config = new Pamac.Config ();
 			// if refresh period is 0, just return so tray will exit
@@ -301,6 +306,10 @@ namespace Pamac {
 				lockfile = GLib.File.new_for_path (daemon.get_lockfile ());
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
+				//try standard lock file
+				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
+			} catch (DBusError e) {
+				stderr.printf ("DBusError: %s\n", e.message);
 				//try standard lock file
 				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
 			}

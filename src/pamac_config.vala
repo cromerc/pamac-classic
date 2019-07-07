@@ -19,7 +19,7 @@
  */
 
 namespace Pamac {
-	class Config {
+	public class Config {
 		HashTable<string,string> _environment_variables;
 
 		public bool recurse { get; private set; }

@@ -18,7 +18,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace AUR {
+//using Json
+//using Soup
+//using Alpm
+
+namespace Pamac {
 	// AUR urls
 	const string aur_url = "http://aur.archlinux.org";
 	const string rpc_url = aur_url + "/rpc/?v=5";

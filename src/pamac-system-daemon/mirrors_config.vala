@@ -1,1 +1,0 @@
-../mirrors_config.vala
