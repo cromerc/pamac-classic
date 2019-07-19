@@ -303,7 +303,10 @@ namespace Pamac {
 
 			start_daemon ();
 			try {
-				lockfile = GLib.File.new_for_path (daemon.get_lockfile ());
+				string path = daemon.get_lockfile ();
+				if (path != null) {
+					lockfile = GLib.File.new_for_path (path);
+				}
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
 				try_standard_lock ();
@@ -323,14 +326,8 @@ namespace Pamac {
 			this.hold ();
 		}
 
-		private try_standard_lock () {
-			try {
-				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
-			} catch (IOError e) {
-				stderr.printf ("IOError: %s\n", e.message);
-			} catch (DBusError e) {
-				stderr.printf ("DBusError: %s\n", e.message);
-			}
+		private void try_standard_lock () {
+			lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
 		}
 
 		public override void activate () {
