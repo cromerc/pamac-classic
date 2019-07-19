@@ -306,12 +306,10 @@ namespace Pamac {
 				lockfile = GLib.File.new_for_path (daemon.get_lockfile ());
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
-				//try standard lock file
-				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
+				try_standard_lock ();
 			} catch (DBusError e) {
 				stderr.printf ("DBusError: %s\n", e.message);
-				//try standard lock file
-				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
+				try_standard_lock ();
 			}
 			Timeout.add (200, check_extern_lock);
 			// wait 30 seconds before check updates
@@ -323,6 +321,16 @@ namespace Pamac {
 			launch_refresh_timeout (pamac_config.refresh_period);
 
 			this.hold ();
+		}
+
+		private try_standard_lock () {
+			try {
+				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
+			} catch (IOError e) {
+				stderr.printf ("IOError: %s\n", e.message);
+			} catch (DBusError e) {
+				stderr.printf ("DBusError: %s\n", e.message);
+			}
 		}
 
 		public override void activate () {
