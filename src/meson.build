@@ -4,7 +4,7 @@ cfg_pamac.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'
 cfg_pamac.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac.set('RELEASE_NAME', 'pamac')
 cfg_pamac.set('PREFIX', get_option('prefix'))
-cfg_pamac.set('VERSION', '7.0.0')
+cfg_pamac.set('VERSION', '7.0.1')
 cfg_pamac.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(
@@ -64,14 +64,22 @@ pamac_deps += [meson.get_compiler('c').find_library('m', required : false)]
 pamac_link_args = ['-rdynamic']
 
 Pamac_library = shared_library('Pamac', pamac_sources,
+    vala_gir: 'Pamac-1.0.gir',
     dependencies: pamac_deps,
     vala_args: pamac_vala_args,
     c_args: pamac_c_args,
     link_args: pamac_link_args,
-    version: '7.0.0',
+    version: '7.0.1',
     soversion: '7',
     install: true,
-    install_dir: [true, true, true])
+    install_dir: [true, true, true, true])
+
+g_ir_compiler = find_program('g-ir-compiler')
+custom_target('Pamac typelib', command: [g_ir_compiler, '--shared-library=libPamac', '--output', '@OUTPUT@',  join_paths(meson.current_build_dir(), 'Pamac-1.0.gir')],
+    output: 'Pamac-1.0.typelib',
+    depends: Pamac_library,
+    install: true,
+    install_dir: join_paths(get_option('libdir'), 'girepository-1.0'))
 
 pamac_requires = []
 pamac_requires += ['atk']
@@ -90,7 +98,7 @@ pamac_requires += ['vte-2.91']
 pamac_requires += ['x11']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : Pamac_library,
-	version : '7.0.0',
+	version : '7.0.1',
 	name : 'Pamac',
 	filebase : 'Pamac',
 	description : 'Pamac',
