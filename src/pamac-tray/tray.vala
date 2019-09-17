@@ -46,7 +46,7 @@ namespace Pamac {
 		GLib.File lockfile;
 		bool updates_available;
 
-		public TrayIcon () {
+		protected TrayIcon () {
 			application_id = "org.pamac.tray";
 			flags = ApplicationFlags.FLAGS_NONE;
 		}
