@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -241,27 +241,6 @@ msgstr "Se verifică integritatea"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Se încarcă fișierele pachetelor"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Se verifică delta integritatea"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Se aplică delta"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Se generează %s cu %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Generare reușită"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Generare eșuată"
 
 #: ../src/transaction.vala
 #, c-format
@@ -806,3 +785,19 @@ msgstr ""
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Alege actualizări ignorate"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Se verifică delta integritatea"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Se aplică delta"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Se generează %s cu %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Generare reușită"
+
+#~ msgid "Generation failed"
+#~ msgstr "Generare eșuată"

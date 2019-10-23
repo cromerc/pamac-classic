@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 09:19+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/manjarolinux/"
@@ -241,27 +241,6 @@ msgstr "Bezig met controleren van integriteit"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Bezig met laden van pakketbestanden"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Bezig met controleren van delta-integriteit"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Bezig met toepassen van delta's"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Bezig met genereren van %s met %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Het genereren is gelukt"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Het genereren is mislukt"
 
 #: ../src/transaction.vala
 #, c-format
@@ -804,3 +783,19 @@ msgstr "Cache"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Kies genegeerde upgrades"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Bezig met controleren van delta-integriteit"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Bezig met toepassen van delta's"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Bezig met genereren van %s met %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Het genereren is gelukt"
+
+#~ msgid "Generation failed"
+#~ msgstr "Het genereren is mislukt"

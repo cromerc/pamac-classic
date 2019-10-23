@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/manjarolinux/"
@@ -253,27 +253,6 @@ msgstr "Sjekker integritet"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Laster pakke filer"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Sjekker integritet"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Anfører deltaer"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Generer %s med %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Generering lyktes"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Generering feilet"
 
 #: ../src/transaction.vala
 #, c-format
@@ -816,3 +795,19 @@ msgstr "Hurtiglager"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Velg ignorerte oppdateringer "
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Sjekker integritet"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Anfører deltaer"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Generer %s med %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Generering lyktes"
+
+#~ msgid "Generation failed"
+#~ msgstr "Generering feilet"

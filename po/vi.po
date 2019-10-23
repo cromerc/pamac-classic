@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/manjarolinux/manjaro-"
@@ -238,27 +238,6 @@ msgstr "Đang kiểm tra tính toàn vẹn"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Đang nạp các tệp tin của các gói"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr ""
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr ""
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Đang tạo lập %s với %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Quá trình tạo lập thành công"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Quá trình tạo lâp thất bại"
 
 #: ../src/transaction.vala
 #, c-format
@@ -793,3 +772,13 @@ msgstr ""
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr ""
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Đang tạo lập %s với %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Quá trình tạo lập thành công"
+
+#~ msgid "Generation failed"
+#~ msgstr "Quá trình tạo lâp thất bại"

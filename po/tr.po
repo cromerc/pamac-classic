@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-08-04 06:07+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -242,27 +242,6 @@ msgstr "Bütünlük Denetleniyor"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Paket Dosyalari Yükleniyor"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Delta bütünlüğü kontrol ediliyor"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Deltalar uygulanıyor"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Oluşturuluyor %s ile %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Oluşturma başarılı"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Oluşturulamadı"
 
 #: ../src/transaction.vala
 #, c-format
@@ -805,3 +784,19 @@ msgstr "Önbellek"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Güncellenmeyecek Paketleri Seç"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Delta bütünlüğü kontrol ediliyor"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Deltalar uygulanıyor"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Oluşturuluyor %s ile %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Oluşturma başarılı"
+
+#~ msgid "Generation failed"
+#~ msgstr "Oluşturulamadı"

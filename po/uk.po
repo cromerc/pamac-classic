@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/manjarolinux/manjaro-"
@@ -248,27 +248,6 @@ msgstr "Перевірка цілісності"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Завантаження пакетів файлів"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Перевірка цілісності delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Застосування deltas"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Генерація %s з %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Вдала генерація"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Невдале генерування"
 
 #: ../src/transaction.vala
 #, c-format
@@ -814,3 +793,19 @@ msgstr "Кеш"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Оберіть ігноровані Оновлення"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Перевірка цілісності delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Застосування deltas"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Генерація %s з %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Вдала генерація"
+
+#~ msgid "Generation failed"
+#~ msgstr "Невдале генерування"

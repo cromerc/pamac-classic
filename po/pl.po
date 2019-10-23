@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-08-02 11:35+0000\n"
 "Last-Translator: Piotr Strębski <strebski@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -248,27 +248,6 @@ msgstr "Sprawdzanie spójności"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Wczytywanie plików pakietów"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Sprawdzanie integralności delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Zastosowywanie delt"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Generowanie %s przy użyciu %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Generowanie zakończone sukcesem"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Generowanie nie powiodło się"
 
 #: ../src/transaction.vala
 #, c-format
@@ -818,3 +797,19 @@ msgstr "Pamięć podręczna"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Wybierz ignorowane aktualizacje"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Sprawdzanie integralności delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Zastosowywanie delt"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Generowanie %s przy użyciu %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Generowanie zakończone sukcesem"
+
+#~ msgid "Generation failed"
+#~ msgstr "Generowanie nie powiodło się"

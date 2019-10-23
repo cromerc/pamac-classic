@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Galician (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -236,27 +236,6 @@ msgstr "Verificando a integridade dos paquetes"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Carga de ficheiros de paquetes"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Comprobando a integridade delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Aplicando deltas"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Xerando %s con %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Xeración do paquete satisfactoria"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Xeración do paquete fallida"
 
 #: ../src/transaction.vala
 #, c-format
@@ -801,3 +780,19 @@ msgstr "Cache"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Escolla actualizacións ignorados"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Comprobando a integridade delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Aplicando deltas"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Xerando %s con %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Xeración do paquete satisfactoria"
+
+#~ msgid "Generation failed"
+#~ msgstr "Xeración do paquete fallida"

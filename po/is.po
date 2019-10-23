@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Icelandic (http://www.transifex.com/manjarolinux/manjaro-"
@@ -238,27 +238,6 @@ msgstr "Athuga gæði"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Hleð inn pakkaskrám"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Athuga gæði mismunaskráa"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Virkja mismunaskrár"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Útbý %s með %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Tókst að útbúa"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Mistókst að útbúa"
 
 #: ../src/transaction.vala
 #, c-format
@@ -801,3 +780,19 @@ msgstr "Skyndiminni"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Velja hunsaðar uppfærslur"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Athuga gæði mismunaskráa"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Virkja mismunaskrár"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Útbý %s með %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Tókst að útbúa"
+
+#~ msgid "Generation failed"
+#~ msgstr "Mistókst að útbúa"

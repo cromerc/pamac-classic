@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 06:06+0000\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -242,27 +242,6 @@ msgstr "Kontroluje sa integrita"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Načítavajú sa súbory balíkov"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Kontroluje sa integrita súčastí delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Aplikujú sa súčasti delta"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Generuje sa %s s %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Generovanie bolo úspešné"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Generovanie zlyhalo"
 
 #: ../src/transaction.vala
 #, c-format
@@ -809,3 +788,19 @@ msgstr "Vyrovnávacia pamäť"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Voľba ignorovaných aktualizácií"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Kontroluje sa integrita súčastí delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Aplikujú sa súčasti delta"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Generuje sa %s s %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Generovanie bolo úspešné"
+
+#~ msgid "Generation failed"
+#~ msgstr "Generovanie zlyhalo"

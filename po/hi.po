@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Hindi (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -239,27 +239,6 @@ msgstr "अखंडता की जाँच"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "लोड हो रहा है संकुल फाइलें"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "डेल्टा अखंडता की जाँच"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "डेल्टा लागू करना"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr ""
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr ""
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "जनरेशन विफल हुआ"
 
 #: ../src/transaction.vala
 #, c-format
@@ -797,3 +776,12 @@ msgstr ""
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "उपेक्षित उन्नयन चुनें"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "डेल्टा अखंडता की जाँच"
+
+#~ msgid "Applying deltas"
+#~ msgstr "डेल्टा लागू करना"
+
+#~ msgid "Generation failed"
+#~ msgstr "जनरेशन विफल हुआ"

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Italian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -249,27 +249,6 @@ msgstr "Verifica dell'integrità dei pacchetti"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Caricamento dei file dei pacchetti"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Controllo dell'integrità dei delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Applicazione dei delta"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Generazione %s con %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Generazione riuscita"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Generazione fallita"
 
 #: ../src/transaction.vala
 #, c-format
@@ -812,3 +791,19 @@ msgstr "Cache"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Scegli aggiornamenti da ignorare"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Controllo dell'integrità dei delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Applicazione dei delta"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Generazione %s con %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Generazione riuscita"
+
+#~ msgid "Generation failed"
+#~ msgstr "Generazione fallita"

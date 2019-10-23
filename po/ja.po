@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -239,27 +239,6 @@ msgstr "ファイルの整合性を確認中"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "パッケージファイルのロード中"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "差分の確認中"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "差分の適用中"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "%sで%sを生成"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "パッケージの生成が成功しました"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "パッケージの生成が失敗しました"
 
 #: ../src/transaction.vala
 #, c-format
@@ -799,3 +778,19 @@ msgstr "キャッシュ"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "無視するアップグレードを選択"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "差分の確認中"
+
+#~ msgid "Applying deltas"
+#~ msgstr "差分の適用中"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "%sで%sを生成"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "パッケージの生成が成功しました"
+
+#~ msgid "Generation failed"
+#~ msgstr "パッケージの生成が失敗しました"

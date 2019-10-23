@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -239,27 +239,6 @@ msgstr "כעת בוחן שלמות"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "כעת טוען קבצי חבילות"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "כעת בוחן שלמות דלתא"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "כעת מחיל דלתא"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "כעת מפיק %s בעזרת %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "הפקה צלחה"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "הפקה נכשלה"
 
 #: ../src/transaction.vala
 #, c-format
@@ -800,3 +779,19 @@ msgstr "מטמון"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "בחר שדרוגים מנוכרים"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "כעת בוחן שלמות דלתא"
+
+#~ msgid "Applying deltas"
+#~ msgstr "כעת מחיל דלתא"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "כעת מפיק %s בעזרת %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "הפקה צלחה"
+
+#~ msgid "Generation failed"
+#~ msgstr "הפקה נכשלה"

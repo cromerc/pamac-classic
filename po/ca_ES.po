@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/manjarolinux/"
@@ -239,27 +239,6 @@ msgstr "Comprovant integritat"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Carregant els fitxers dels paquets"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Comprovant la integritat delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Aplicant deltes"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Generant %s amb %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Generació acabada correctament"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "La generació ha fallat"
 
 #: ../src/transaction.vala
 #, c-format
@@ -797,3 +776,19 @@ msgstr ""
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr ""
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Comprovant la integritat delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Aplicant deltes"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Generant %s amb %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Generació acabada correctament"
+
+#~ msgid "Generation failed"
+#~ msgstr "La generació ha fallat"

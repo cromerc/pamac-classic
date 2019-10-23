@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/manjarolinux/manjaro-"
@@ -251,27 +251,6 @@ msgstr "Memeriksa integritas"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Pemuatan berkas paket"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Memeriksa integritas delta"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Menerapkan deltas"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "Menghasilkan %s dengan %s"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Menghasilkan berhasil"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Menghasilkan gagal"
 
 #: ../src/transaction.vala
 #, c-format
@@ -811,3 +790,19 @@ msgstr ""
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Memilih Abaian Pembaruan"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Memeriksa integritas delta"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Menerapkan deltas"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "Menghasilkan %s dengan %s"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Menghasilkan berhasil"
+
+#~ msgid "Generation failed"
+#~ msgstr "Menghasilkan gagal"

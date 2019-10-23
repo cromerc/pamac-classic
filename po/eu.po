@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 23:01-0300\n"
+"POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Basque (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -240,27 +240,6 @@ msgstr "Osotasuna egiaztatzen"
 #: ../src/transaction.vala
 msgid "Loading packages files"
 msgstr "Paketeen fitxategiak kargatzen"
-
-#: ../src/transaction.vala
-msgid "Checking delta integrity"
-msgstr "Deltaren osotasuna egiaztatzen"
-
-#: ../src/transaction.vala
-msgid "Applying deltas"
-msgstr "Deltak aplikatzen"
-
-#: ../src/transaction.vala
-#, c-format
-msgid "Generating %s with %s"
-msgstr "%s sortzen %s erabilita"
-
-#: ../src/transaction.vala
-msgid "Generation succeeded"
-msgstr "Sormena ongi burutu da"
-
-#: ../src/transaction.vala
-msgid "Generation failed"
-msgstr "Sormenak huts egin du"
 
 #: ../src/transaction.vala
 #, c-format
@@ -803,3 +782,19 @@ msgstr "Katxea"
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
 msgstr "Hautatu ezikusitako bertsio-berritzeak"
+
+#~ msgid "Checking delta integrity"
+#~ msgstr "Deltaren osotasuna egiaztatzen"
+
+#~ msgid "Applying deltas"
+#~ msgstr "Deltak aplikatzen"
+
+#, c-format
+#~ msgid "Generating %s with %s"
+#~ msgstr "%s sortzen %s erabilita"
+
+#~ msgid "Generation succeeded"
+#~ msgstr "Sormena ongi burutu da"
+
+#~ msgid "Generation failed"
+#~ msgstr "Sormenak huts egin du"
