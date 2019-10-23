@@ -780,7 +780,7 @@ namespace Pamac {
 			foreach (unowned string name in alpm_config.get_syncfirsts ()) {
 				pkg = Alpm.find_satisfier (alpm_handle.localdb.pkgcache, name);
 				if (pkg != null) {
-					candidate = pkg.sync_newversion (alpm_handle.syncdbs);
+					candidate = pkg.get_new_version (alpm_handle.syncdbs);
 					if (candidate != null) {
 						var infos = initialise_pkg_struct (candidate);
 						infos.installed_version = pkg.version;
@@ -809,7 +809,7 @@ namespace Pamac {
 					unowned Alpm.Package installed_pkg = pkgcache.data;
 					// check if installed_pkg is in IgnorePkg or IgnoreGroup
 					if (alpm_handle.should_ignore (installed_pkg) == 0) {
-						candidate = installed_pkg.sync_newversion (alpm_handle.syncdbs);
+						candidate = installed_pkg.get_new_version (alpm_handle.syncdbs);
 						if (candidate != null) {
 							var infos = initialise_pkg_struct (candidate);
 							infos.installed_version = installed_pkg.version;
@@ -1616,7 +1616,6 @@ namespace Pamac {
 					case Alpm.Errno.PKG_INVALID:
 					case Alpm.Errno.PKG_INVALID_CHECKSUM:
 					case Alpm.Errno.PKG_INVALID_SIG:
-					case Alpm.Errno.DLT_INVALID:
 						string[] details = {};
 						details += Alpm.strerror (errno) + ":";
 						unowned Alpm.List<string*> list = err_data;
@@ -1775,10 +1774,6 @@ private void cb_event (Alpm.Event.Data data) {
 				default:
 					break;
 			}
-			break;
-		case Alpm.Event.Type.DELTA_PATCH_START:
-			details += data.delta_patch_delta.to;
-			details += data.delta_patch_delta.delta;
 			break;
 		case Alpm.Event.Type.SCRIPTLET_INFO:
 			details += data.scriptlet_info_line;

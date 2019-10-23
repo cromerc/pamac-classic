@@ -52,7 +52,6 @@ public class AlpmConfig {
 	string? logfile;
 	string? gpgdir;
 	string? arch;
-	double deltaratio;
 	int usesyslog;
 	public int checkspace;
 	GLib.List<string> cachedirs;
@@ -96,7 +95,6 @@ public class AlpmConfig {
 		syncfirsts = new GLib.List<string> ();
 		usesyslog = 0;
 		checkspace = 0;
-		deltaratio = 0.7;
 		siglevel = Alpm.Signature.Level.PACKAGE | Alpm.Signature.Level.PACKAGE_OPTIONAL | Alpm.Signature.Level.DATABASE | Alpm.Signature.Level.DATABASE_OPTIONAL;
 		localfilesiglevel = Alpm.Signature.Level.USE_DEFAULT;
 		remotefilesiglevel = Alpm.Signature.Level.USE_DEFAULT;
@@ -174,7 +172,6 @@ public class AlpmConfig {
 		}
 		handle.gpgdir = gpgdir;
 		handle.arch = arch;
-		handle.deltaratio = deltaratio;
 		handle.usesyslog = usesyslog;
 		handle.checkspace = checkspace;
 		handle.defaultsiglevel = siglevel;
@@ -280,8 +277,6 @@ public class AlpmConfig {
 							} else {
 								arch = val;
 							}
-						} else if (key == "UseDelta") {
-							deltaratio = double.parse (val);
 						} else if (key == "UseSysLog") {
 							usesyslog = 1;
 						} else if (key == "CheckSpace") {

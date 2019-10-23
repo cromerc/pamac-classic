@@ -861,7 +861,7 @@ namespace Pamac {
 				unowned Alpm.Package installed_pkg = pkgcache.data;
 				// check if installed_pkg is in IgnorePkg or IgnoreGroup
 				if (tmp_handle.should_ignore (installed_pkg) == 0) {
-					candidate = installed_pkg.sync_newversion (tmp_handle.syncdbs);
+					candidate = installed_pkg.get_new_version (tmp_handle.syncdbs);
 					if (candidate != null) {
 						var infos = initialise_pkg_struct (candidate);
 						infos.installed_version = installed_pkg.version;
