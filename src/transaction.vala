@@ -1487,46 +1487,46 @@ namespace Pamac {
 			string? action = null;
 			string? detailed_action = null;
 			switch (primary_event) {
-				case 1: //Alpm.Event.Type.CHECKDEPS_START
+				case Alpm.Event.Type.CHECKDEPS_START:
 					action = dgettext (null, "Checking dependencies") + "...";
 					break;
-				case 3: //Alpm.Event.Type.FILECONFLICTS_START
+				case Alpm.Event.Type.FILECONFLICTS_START:
 					action = dgettext (null, "Checking file conflicts") + "...";
 					break;
-				case 5: //Alpm.Event.Type.RESOLVEDEPS_START
+				case Alpm.Event.Type.RESOLVEDEPS_START:
 					action = dgettext (null, "Resolving dependencies") + "...";
 					break;
-				case 7: //Alpm.Event.Type.INTERCONFLICTS_START
+				case Alpm.Event.Type.INTERCONFLICTS_START:
 					action = dgettext (null, "Checking inter-conflicts") + "...";
 					break;
-				case 11: //Alpm.Event.Type.PACKAGE_OPERATION_START
+				case Alpm.Event.Type.PACKAGE_OPERATION_START:
 					switch (secondary_event) {
 						// special case handle differently
-						case 1: //Alpm.Package.Operation.INSTALL
+						case Alpm.Package.Operation.INSTALL:
 							previous_filename = details[0];
 							string msg = dgettext (null, "Installing %s").printf (details[0]) + "...";
 							progress_box.action_label.label = msg;
 							show_in_term (dgettext (null, "Installing %s").printf ("%s (%s)".printf (details[0], details[1])) + "...");
 							break;
-						case 2: //Alpm.Package.Operation.UPGRADE
+						case Alpm.Package.Operation.UPGRADE:
 							previous_filename = details[0];
 							string msg = dgettext (null, "Upgrading %s").printf (details[0]) + "...";
 							progress_box.action_label.label = msg;
 							show_in_term (dgettext (null, "Upgrading %s").printf ("%s (%s -> %s)".printf (details[0], details[1], details[2])) + "...");
 							break;
-						case 3: //Alpm.Package.Operation.REINSTALL
+						case Alpm.Package.Operation.REINSTALL:
 							previous_filename = details[0];
 							string msg = dgettext (null, "Reinstalling %s").printf (details[0]) + "...";
 							progress_box.action_label.label = msg;
 							show_in_term (dgettext (null, "Reinstalling %s").printf ("%s (%s)".printf (details[0], details[1])) + "...");
 							break;
-						case 4: //Alpm.Package.Operation.DOWNGRADE
+						case Alpm.Package.Operation.DOWNGRADE:
 							previous_filename = details[0];
 							string msg = dgettext (null, "Downgrading %s").printf (details[0]) + "...";
 							progress_box.action_label.label = msg;
 							show_in_term (dgettext (null, "Downgrading %s").printf ("%s (%s -> %s)".printf (details[0], details[1], details[2])) + "...");
 							break;
-						case 5: //Alpm.Package.Operation.REMOVE
+						case Alpm.Package.Operation.REMOVE:
 							previous_filename = details[0];
 							string msg = dgettext (null, "Removing %s").printf (details[0]) + "...";
 							progress_box.action_label.label = msg;
@@ -1534,28 +1534,13 @@ namespace Pamac {
 							break;
 					}
 					break;
-				case 13: //Alpm.Event.Type.INTEGRITY_START
+				case Alpm.Event.Type.INTEGRITY_START:
 					action = dgettext (null, "Checking integrity") + "...";
 					break;
-				case 15: //Alpm.Event.Type.LOAD_START
+				case Alpm.Event.Type.LOAD_START:
 					action = dgettext (null, "Loading packages files") + "...";
 					break;
-				case 17: //Alpm.Event.Type.DELTA_INTEGRITY_START
-					action = dgettext (null, "Checking delta integrity") + "...";
-					break;
-				case 19: //Alpm.Event.Type.DELTA_PATCHES_START
-					action = dgettext (null, "Applying deltas") + "...";
-					break;
-				case 21: //Alpm.Event.Type.DELTA_PATCH_START
-					detailed_action = dgettext (null, "Generating %s with %s").printf (details[0], details[1]) + "...";
-					break;
-				case 22: //Alpm.Event.Type.DELTA_PATCH_DONE
-					detailed_action = dgettext (null, "Generation succeeded") + "...";
-					break;
-				case 23: //Alpm.Event.Type.DELTA_PATCH_FAILED
-					detailed_action = dgettext (null, "Generation failed") + "...";
-					break;
-				case 24: //Alpm.Event.Type.SCRIPTLET_INFO
+				case Alpm.Event.Type.SCRIPTLET_INFO:
 					// hooks output are also emitted as SCRIPTLET_INFO
 					if (previous_filename != "") {
 						progress_box.action_label.label = dgettext (null, "Configuring %s").printf (previous_filename) + "...";
@@ -1563,15 +1548,15 @@ namespace Pamac {
 					detailed_action = details[0].replace ("\n", "");
 					important_details_outpout (false);
 					break;
-				case 25: //Alpm.Event.Type.RETRIEVE_START
+				case Alpm.Event.Type.RETRIEVE_START:
 					start_downloading ();
 					action = dgettext (null, "Downloading") + "...";
 					break;
-				case 26: //Alpm.Event.Type.RETRIEVE_DONE
-				case 27: //Alpm.Event.Type.RETRIEVE_FAILED
+				case Alpm.Event.Type.RETRIEVE_DONE:
+				case Alpm.Event.Type.RETRIEVE_FAILED:
 					stop_downloading ();
 					break;
-				case 28: //Alpm.Event.Type.PKGDOWNLOAD_START
+				case Alpm.Event.Type.PKGDOWNLOAD_START:
 					// special case handle differently
 					show_in_term (dgettext (null, "Downloading %s").printf (details[0]) + "...");
 					string name_version_release = details[0].slice (0, details[0].last_index_of_char ('-'));
@@ -1579,34 +1564,34 @@ namespace Pamac {
 					string name = name_version.slice (0, name_version.last_index_of_char ('-'));
 					progress_box.action_label.label = dgettext (null, "Downloading %s").printf (name) + "...";
 					break;
-				case 31: //Alpm.Event.Type.DISKSPACE_START
+				case Alpm.Event.Type.DISKSPACE_START:
 					action = dgettext (null, "Checking available disk space") + "...";
 					break;
-				case 33: //Alpm.Event.Type.OPTDEP_REMOVAL
+				case Alpm.Event.Type.OPTDEP_REMOVAL:
 					detailed_action = dgettext (null, "%s optionally requires %s").printf (details[0], details[1]);
 					warning_textbuffer.append (detailed_action + "\n");
 					break;
-				case 34: //Alpm.Event.Type.DATABASE_MISSING
+				case Alpm.Event.Type.DATABASE_MISSING:
 					detailed_action = dgettext (null, "Database file for %s does not exist").printf (details[0]);
 					break;
-				case 35: //Alpm.Event.Type.KEYRING_START
+				case Alpm.Event.Type.KEYRING_START:
 					action = dgettext (null, "Checking keyring") + "...";
 					break;
-				case 37: //Alpm.Event.Type.KEY_DOWNLOAD_START
+				case Alpm.Event.Type.KEY_DOWNLOAD_START:
 					action = dgettext (null, "Downloading required keys") + "...";
 					break;
-				case 39: //Alpm.Event.Type.PACNEW_CREATED
+				case Alpm.Event.Type.PACNEW_CREATED:
 					detailed_action = dgettext (null, "%s installed as %s.pacnew").printf (details[0], details[0]);
 					break;
-				case 40: //Alpm.Event.Type.PACSAVE_CREATED
+				case Alpm.Event.Type.PACSAVE_CREATED:
 					detailed_action = dgettext (null, "%s installed as %s.pacsave").printf (details[0], details[0]);
 					break;
-				case 41: //Alpm.Event.Type.HOOK_START
+				case Alpm.Event.Type.HOOK_START:
 					switch (secondary_event) {
-						case 1: //Alpm.HookWhen.PRE_TRANSACTION
+						case Alpm.HookWhen.PRE_TRANSACTION:
 							action = dgettext (null, "Running pre-transaction hooks") + "...";
 							break;
-						case 2: //Alpm.HookWhen.POST_TRANSACTION
+						case Alpm.HookWhen.POST_TRANSACTION:
 							previous_filename = "";
 							action = dgettext (null, "Running post-transaction hooks") + "...";
 							break;
@@ -1614,7 +1599,7 @@ namespace Pamac {
 							break;
 					}
 					break;
-				case 43: // Alpm.Event.Type.HOOK_RUN_START
+				case Alpm.Event.Type.HOOK_RUN_START:
 					float fraction = (float) int.parse (details[2]) / int.parse (details[3]);
 					if (fraction != previous_percent) {
 						previous_percent = fraction;
@@ -1650,18 +1635,18 @@ namespace Pamac {
 		void on_emit_progress (uint progress, string pkgname, uint percent, uint n_targets, uint current_target) {
 			float fraction;
 			switch (progress) {
-				case 0: //Alpm.Progress.ADD_START
-				case 1: //Alpm.Progress.UPGRADE_START
-				case 2: //Alpm.Progress.DOWNGRADE_START
-				case 3: //Alpm.Progress.REINSTALL_START
-				case 4: //Alpm.Progress.REMOVE_START
+				case Alpm.Progress.ADD_START:
+				case Alpm.Progress.UPGRADE_START:
+				case Alpm.Progress.DOWNGRADE_START:
+				case Alpm.Progress.REINSTALL_START:
+				case Alpm.Progress.REMOVE_START:
 					fraction = ((float) (current_target - 1) / n_targets) + ((float) percent / (100 * n_targets));
 					break;
-				case 5: //Alpm.Progress.CONFLICTS_START
-				case 6: //Alpm.Progress.DISKSPACE_START
-				case 7: //Alpm.Progress.INTEGRITY_START
-				case 8: //Alpm.Progress.LOAD_START
-				case 9: //Alpm.Progress.KEYRING_START
+				case Alpm.Progress.CONFLICTS_START:
+				case Alpm.Progress.DISKSPACE_START:
+				case Alpm.Progress.INTEGRITY_START:
+				case Alpm.Progress.LOAD_START:
+				case Alpm.Progress.KEYRING_START:
 				default:
 					fraction = (float) percent / 100;
 					break;
