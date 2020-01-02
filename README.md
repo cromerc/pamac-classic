@@ -34,47 +34,6 @@ A graphical package manager for pacman
 - Vala: 0.38
 - AutoVala: 1.2.0 (optional to regenerate CMake and Meson files)
 
-## Using CMake with GNU Make
-
-```
-mkdir build
-cd build
-cmake .. \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
-    -DCMAKE_INSTALL_SYSCONFDIR=/etc
-make
-make install
-```
-### Extra build flags
-
-- -DDISABLE_AUR=ON (to disable AUR in Pamac)
-- -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
-- -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
-- -DICON_UPDATE=OFF (to disable updating the icon cache)
-- -DENABLE_HAMBURGER=ON (to build with the classic hamburger menu)
-
-## Using CMake with Ninja
-
-```
-mkdir build
-cd build
-cmake .. \
-    -GNinja
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
-    -DCMAKE_INSTALL_SYSCONFDIR=/etc
-ninja
-ninja install
-```
-### Extra build flags
-
-- -DDISABLE_AUR=ON (to disable AUR in Pamac)
-- -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
-- -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
-- -DICON_UPDATE=OFF (to disable updating the icon cache)
-- -DENABLE_HAMBURGER=ON (to build with the classic hamburger menu)
-
 ## Using Meson with Ninja
 
 ```
