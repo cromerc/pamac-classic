@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2019-10-23 15:05-0300\n"
-"PO-Revision-Date: 2017-07-30 02:40+0000\n"
+"PO-Revision-Date: 2020-01-02 12:41-0300\n"
 "Last-Translator: zura davitashvili <zdavitashvili0@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
 "language/ka/)\n"
@@ -21,7 +21,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -355,7 +356,6 @@ msgid_plural "%u available updates"
 msgstr[0] "ხელმისაწვდომია %u განახლება"
 msgstr[1] "ხელმისაწვდომია %u განახლება"
 
-
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 #: ../data/interface/progress_dialog.ui ../data/interface/manager_window.ui
 msgid "Details"
@@ -546,8 +546,7 @@ msgid "Name"
 msgstr "სახელი"
 
 #: ../src/pamac-manager/manager_window.vala
-#: ../data/interface/transaction_sum_dialog.ui
-#: ../data/interface/manager_window.ui
+#: ../data/interface/transaction_sum_dialog.ui ../data/interface/manager_window.ui
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "_Cancel"
 msgstr "გაუქმება"
@@ -679,11 +678,11 @@ msgstr "არასაჭირო დამოკიდებულებე�
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"When removing a package, also remove its dependencies that are not required "
-"by other packages"
+"When removing a package, also remove its dependencies that are not required by "
+"other packages"
 msgstr ""
-"პაკეტის მოცილებისას, ასევე მოაცილე მისი ის დამოკიდებულებები, "
-"რომლებიც არ ესაჭიროება სხვა პაკეტებს"
+"პაკეტის მოცილებისას, ასევე მოაცილე მისი ის დამოკიდებულებები, რომლებიც არ "
+"ესაჭიროება სხვა პაკეტებს"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"

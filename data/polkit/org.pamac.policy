@@ -50,6 +50,7 @@
     <message xml:lang="az_AZ">Kimlik tələb olunur</message>
     <message xml:lang="ast">Ríquese l'autenticación</message>
     <message xml:lang="ar">صلاحيات مطلوبة</message>
+    <message xml:lang="ka">საჭიროა ავთენტიფიკაცია</message>
     <defaults>
       <allow_any>no</allow_any>
       <allow_inactive>auth_admin_keep</allow_inactive>
