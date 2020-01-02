@@ -6,13 +6,15 @@
 # Translators:
 # arabuli <arabulibeqa@yahoo.com>, 2015
 # arabuli <arabulibeqa@yahoo.com>, 2015
+# giorgi shashviashvili <giorgishashviashvili@outlook.com>, 2019
+# zura davitashvili <zdavitashvili0@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2019-10-23 15:05-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
-"Last-Translator: philm <philm@manjaro.org>\n"
+"Last-Translator: zura davitashvili <zdavitashvili0@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
 "language/ka/)\n"
 "Language: ka\n"
@@ -23,315 +25,316 @@ msgstr ""
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 #: ../src/pamac-manager/manager_window.vala
 msgid "Explicitly installed"
-msgstr ""
+msgstr "განზრახ დაყენებული"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 #: ../src/pamac-manager/manager_window.vala
 msgid "Installed as a dependency for another package"
-msgstr ""
+msgstr "დაყენებულია, როგორც დამოკიდებულება სხვა პაკეტისთვის"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Yes"
-msgstr ""
+msgstr "დიახ"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "No"
-msgstr ""
+msgstr "არა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 msgid "Failed to initialize alpm library"
-msgstr ""
+msgstr "alpm ბიბლიოთეკის წამოწყება ვერ მოხერხდა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala ../src/transaction.vala
 msgid "Authentication failed"
-msgstr ""
+msgstr "ავთენტიფიკაცია ვერ მოხერდა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 msgid "Failed to synchronize any databases"
-msgstr ""
+msgstr "ვერცერთი მონაცემთა ბაზის სინქრონიზაცია ვერ მოხერხდა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 msgid "Failed to init transaction"
-msgstr ""
+msgstr "ტრანზაქციის წამოწყება ვერ მოხერხდა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 msgid "Failed to prepare transaction"
-msgstr ""
+msgstr "ტრანზაქციის მომზადება ვერ მოხერხდა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "target not found: %s"
-msgstr ""
+msgstr "მიზანი ვერ მოიძებნა: %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "package %s does not have a valid architecture"
-msgstr ""
+msgstr "პაკეტ %s-ს არ აქვს დაშვებული არქიტექტურა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "unable to satisfy dependency '%s' required by %s"
-msgstr ""
+msgstr "შეუძლებელია %s-ის მიერ მოთხოვნილი '%s' დამოკიდებულების დაკმაყოფილება"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "%s (%s)-ის დაყენება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "removing %s breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "%s-ის მოცილება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s and %s are in conflict"
-msgstr ""
+msgstr "%s და %s არიან კონფლიქტში"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s needs to be removed but it is a locked package"
-msgstr ""
+msgstr "%s უნდა მოცილდეს, მაგრამ ის ჩაკეტილი პაკეტია"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 msgid "Failed to commit transaction"
-msgstr ""
+msgstr "ტრანზაქციის განხორციელება ვერ მოხერხდა"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s exists in both %s and %s"
-msgstr ""
+msgstr "%s არსებობს %s-შიც და %s-შიც"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s: %s already exists in filesystem"
-msgstr ""
+msgstr "%s: %s უკვე არსებობს ფაილურ სისტემაში"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s is invalid or corrupted"
-msgstr ""
+msgstr "%s არასწორია ან დაზიანებულია"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s appears to be truncated: %jd/%jd bytes\n"
-msgstr ""
+msgstr "როგორც ჩანს %s შემცირებულია: %jd/%jd ბაიტი\n"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "failed retrieving file '%s' from %s : %s\n"
-msgstr ""
+msgstr "'%s' ფაილის მიღება ვერ მოხერხდა %s : %s-იდან\n"
 
 #: ../src/transaction.vala
 msgid "Copy"
-msgstr ""
+msgstr "ასლი"
 
 #: ../src/transaction.vala
 msgid "Refreshing mirrors list"
-msgstr ""
+msgstr "ახლდება საარკეების სია"
 
 #: ../src/transaction.vala
 msgid "Synchronizing package databases"
-msgstr "პაკეტების მონაცემთა ბაზის სინქრონიზაცია"
+msgstr "პაკეტების მონაცემთა ბაზები სინქრონიზირდება"
 
 #: ../src/transaction.vala
 msgid "Starting full system upgrade"
-msgstr ""
+msgstr "იწყება სისტემის სრული განახალება"
 
 #: ../src/transaction.vala
 msgid "Preparing"
-msgstr ""
+msgstr "მზადდება"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Choose a provider for %s"
-msgstr ""
+msgstr "%s-ისთვის მომწოდებლის არჩევა"
 
 #: ../src/transaction.vala
 msgid "To remove"
-msgstr ""
+msgstr "მოცილდება"
 
 #: ../src/transaction.vala
 msgid "To downgrade"
-msgstr ""
+msgstr "დაქვეითდება"
 
 #: ../src/transaction.vala
 msgid "To build"
-msgstr ""
+msgstr "აიგება"
 
 #: ../src/transaction.vala
 msgid "To install"
-msgstr ""
+msgstr "დაყენდება"
 
 #: ../src/transaction.vala
 msgid "To reinstall"
-msgstr ""
+msgstr "ხელახლა დაყენდება"
 
 #: ../src/transaction.vala
 msgid "To upgrade"
-msgstr ""
+msgstr "განახლდება"
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
-msgstr ""
+msgstr "ჩამოტვირთვის სრული ზომა"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Building %s"
-msgstr ""
+msgstr "იგება %s"
 
 #: ../src/transaction.vala
 msgid "Transaction cancelled"
-msgstr ""
+msgstr "ტრანზაქცია გაუქმდა"
 
 #: ../src/transaction.vala
 msgid "Checking dependencies"
-msgstr ""
+msgstr "მოწმდება დამოკიდებულებები"
 
 #: ../src/transaction.vala
 msgid "Checking file conflicts"
-msgstr ""
+msgstr "მოწმდება ფაილის კონფლიქტები"
 
 #: ../src/transaction.vala
 msgid "Resolving dependencies"
-msgstr ""
+msgstr "გვარდება დამოკიდებულებები"
 
 #: ../src/transaction.vala
 msgid "Checking inter-conflicts"
-msgstr ""
+msgstr "მოწმდება შიდა კონფლიქტები"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Installing %s"
-msgstr ""
+msgstr "ყენდება %s"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Upgrading %s"
-msgstr ""
+msgstr "ახლდება %s"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Reinstalling %s"
-msgstr ""
+msgstr "ხელახლა ყენდება %s"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Downgrading %s"
-msgstr ""
+msgstr "ქვეითდება %s"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Removing %s"
-msgstr ""
+msgstr "სცილდება %s"
 
 #: ../src/transaction.vala
 msgid "Checking integrity"
-msgstr ""
+msgstr "მოწმდება მთლიანობა"
 
 #: ../src/transaction.vala
 msgid "Loading packages files"
-msgstr ""
+msgstr "იტვირთება პაკეტების ფაილები"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Configuring %s"
-msgstr ""
+msgstr "კონფიგურირდება %s"
 
 #: ../src/transaction.vala
 msgid "Downloading"
-msgstr ""
+msgstr "იტვირთება"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Downloading %s"
-msgstr ""
+msgstr "იტვირთება %s"
 
 #: ../src/transaction.vala
 msgid "Checking available disk space"
-msgstr ""
+msgstr "მოწმდება დისკზე ხელმისაწვდომი სივრცე"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "%s optionally requires %s"
-msgstr ""
+msgstr "%s მეორეხარისხოვნად მოითხოვს %s-ს"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Database file for %s does not exist"
-msgstr ""
+msgstr "%s-ისთვის მონაცემთა ბაზის ფაილი არ არსებობს"
 
 #: ../src/transaction.vala
 msgid "Checking keyring"
-msgstr ""
+msgstr "მოწმდება გასაღებების ასხმა"
 
 #: ../src/transaction.vala
 msgid "Downloading required keys"
-msgstr ""
+msgstr "იტვირთება საჭირო გასაღებები"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "%s installed as %s.pacnew"
-msgstr ""
+msgstr "%s დაყენდა როგორც %s.pacnew"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "%s installed as %s.pacsave"
-msgstr ""
+msgstr "%s დაყენდა როგორც %s.pacsave"
 
 #: ../src/transaction.vala
 msgid "Running pre-transaction hooks"
-msgstr ""
+msgstr "ეშვება ტრანზაქციამდელი კავები"
 
 #: ../src/transaction.vala
 msgid "Running post-transaction hooks"
-msgstr ""
+msgstr "ეშვება ტრანზაქციის შემდგომი კავები"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "About %u seconds remaining"
-msgstr ""
+msgstr "დარჩენილია დაახლოებით %u წამი"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "About %lu minute remaining"
 msgid_plural "About %lu minutes remaining"
-msgstr[0] ""
+msgstr[0] "დარჩენილია დაახლოებით %lu წუთი"
+msgstr[1] "დარჩენილია დაახლოებით %lu წუთი"
 
 #: ../src/transaction.vala
 #, c-format
 msgid "Refreshing %s"
-msgstr ""
+msgstr "ახლდება %s"
 
 #: ../src/transaction.vala
 msgid "Error"
-msgstr ""
+msgstr "შეცდომა"
 
 #: ../src/transaction.vala
 msgid "Warning"
-msgstr ""
+msgstr "გაფრთხილება"
 
 #: ../src/transaction.vala ../data/interface/progress_dialog.ui
 #: ../data/interface/history_dialog.ui
 msgid "_Close"
-msgstr ""
+msgstr "დახურვა"
 
 #: ../src/transaction.vala
 msgid "Nothing to do"
-msgstr ""
+msgstr "გასაკეთებელი არაფერია"
 
 #: ../src/transaction.vala
 msgid "Transaction successfully finished"
-msgstr ""
+msgstr "ტრანზაქცია წარმატებით დასრულდა"
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
-msgstr ""
+msgstr "მონაცემთა ბაზის ჩაკეტვა შეუძლებელია!"
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -343,35 +346,37 @@ msgstr "პაკეტების მმართველი"
 
 #: ../src/pamac-tray/tray.vala
 msgid "_Quit"
-msgstr "_გამოსვლა"
+msgstr "გასვლა"
 
 #: ../src/pamac-tray/tray.vala
 #, c-format
 msgid "%u available update"
 msgid_plural "%u available updates"
-msgstr[0] "%u ხელმისაწვდომი განახლება"
+msgstr[0] "ხელმისაწვდომია %u განახლება"
+msgstr[1] "ხელმისაწვდომია %u განახლება"
+
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 #: ../data/interface/progress_dialog.ui ../data/interface/manager_window.ui
 msgid "Details"
-msgstr ""
+msgstr "დეტალები"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Pamac is already running"
-msgstr ""
+msgstr "Pamac უკვე გაშვებულია"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
-msgstr ""
+msgstr "მონაცემთა ბაზების განახლება"
 
 #: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
 msgid "View History"
-msgstr ""
+msgstr "ისტორიის ნახვა"
 
 #: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
 #: ../data/interface/manager_window.ui
 msgid "Install Local Packages"
-msgstr ""
+msgstr "ადგილობრივი პაკეტების დაყენება"
 
 #: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
 msgid "Preferences"
@@ -379,307 +384,310 @@ msgstr "პარამეტრები"
 
 #: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
 msgid "About"
-msgstr ""
+msgstr "შესახებ"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Quit"
-msgstr ""
+msgstr "გასვლა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
-msgstr ""
+msgstr "მონიშვნის გაუქმება"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Upgrade"
-msgstr ""
+msgstr "განახლება"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Install"
-msgstr ""
+msgstr "დაყენება"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
-msgstr ""
+msgstr "მოცილება"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Waiting for another package manager to quit"
-msgstr ""
+msgstr "ვუცდით სხვა პაკეტების მმართველის მუშაობის დასრულებას"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
 msgid "%u pending operation"
 msgid_plural "%u pending operations"
-msgstr[0] ""
+msgstr[0] "მოლოდინშია %u ოპერაცია"
+msgstr[1] "მოლოდინშია %u ოპერაცია"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Installed"
-msgstr ""
+msgstr "დაყენებული"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Orphans"
-msgstr ""
+msgstr "ობლები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Foreign"
-msgstr ""
+msgstr "უცხო"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Pending"
-msgstr ""
+msgstr "მოლოდინში"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Install Reason"
-msgstr ""
+msgstr "დაყენების მიზეზი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Mark as explicitly installed"
-msgstr ""
+msgstr "განზრახ დაყენებულად მონიშვნა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Licenses"
-msgstr ""
+msgstr "ლიცენზიები"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Repository"
-msgstr ""
+msgstr "საცავი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Download size"
-msgstr ""
+msgstr "ჩამოტვირთვის ზომა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Installed size"
-msgstr ""
+msgstr "დაყენებულის ზომა"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Groups"
-msgstr ""
+msgstr "ჯგუფები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Packager"
-msgstr ""
+msgstr "შემფუთავი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Build Date"
-msgstr ""
+msgstr "აგების თარიღი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Install Date"
-msgstr ""
+msgstr "დაყენების თარიღი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Signatures"
-msgstr ""
+msgstr "ხელმოწერები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Backup files"
-msgstr ""
+msgstr "სარეზერვო ფაილები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Depends On"
-msgstr ""
+msgstr "დამოკიდებულია"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Optional Dependencies"
-msgstr ""
+msgstr "მეორეხარისხოვანი დამოკიდებულებები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Required By"
-msgstr ""
+msgstr "მოითხოვა შემდეგმა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Optional For"
-msgstr ""
+msgstr "მეორეხარისხოვანია შემდეგისთვის"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Provides"
-msgstr ""
+msgstr "გვთავაზობს"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Replaces"
-msgstr ""
+msgstr "ანაცვლებს"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Conflicts With"
-msgstr ""
+msgstr "კონფლიქტშია შემდეგთან"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Package Base"
-msgstr ""
+msgstr "პაკეტის ბაზა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Maintainer"
-msgstr ""
+msgstr "შემმუშავებელი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "First Submitted"
-msgstr ""
+msgstr "პირველად განთავსდა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Last Modified"
-msgstr ""
+msgstr "ბოლოს შეიცვლა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Votes"
-msgstr ""
+msgstr "ხმები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Out of Date"
-msgstr ""
+msgstr "მოძველებული"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Make Dependencies"
-msgstr ""
+msgstr "აგებისთვის საჭირო დამოკიდებულებები"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Check Dependencies"
-msgstr ""
+msgstr "დამოკიდებულებების შემოწმება"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "_Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "_Open"
-msgstr ""
+msgstr "გახსნა"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Alpm Package"
-msgstr ""
+msgstr "Alpm პაკეტი"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "A Gtk3 frontend for libalpm"
-msgstr ""
+msgstr "Gtk3 ინტერფეისი libalpm-ისთვის"
 
 #: ../src/preferences_dialog.vala ../data/interface/preferences_dialog.ui
 msgid "How often to check for updates, value in hours"
-msgstr ""
+msgstr "რა სიხშირით შემოწმდეს განახლებები, რიცხვი საათებში"
 
 #: ../src/preferences_dialog.vala ../data/interface/preferences_dialog.ui
 msgid "Number of versions of each package to keep in the cache"
-msgstr ""
+msgstr "ქეშში დასატოვებელი თითოეული პაკეტის ვერსიების რაოდენობა"
 
 #: ../src/preferences_dialog.vala
 msgid "Build directory"
-msgstr ""
+msgstr "აგების კატალოგი"
 
 #: ../src/preferences_dialog.vala
 msgid "Worldwide"
-msgstr ""
+msgstr "მსოფლიოს მასშტაბით"
 
 #: ../src/preferences_dialog.vala
 msgid "Speed"
-msgstr ""
+msgstr "სიჩქარით"
 
 #: ../src/preferences_dialog.vala
 msgid "Random"
-msgstr ""
+msgstr "შემთხვევით"
 
 #: ../data/polkit/org.pamac.policy.in
 msgid "Authentication is required"
-msgstr ""
+msgstr "საჭიროა ავთენტიფიკაცია"
 
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
-msgstr ""
+msgstr "მომწოდებლის არჩევა"
 
 #: ../data/interface/choose_provider_dialog.ui
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose"
-msgstr ""
+msgstr "არჩევა"
 
 #: ../data/interface/progress_dialog.ui
 msgid "Progress"
-msgstr ""
+msgstr "პროგრესი"
 
 #: ../data/interface/history_dialog.ui
 msgid "Pamac History"
-msgstr ""
+msgstr "Pamac-ის ისტორია"
 
 #: ../data/interface/transaction_sum_dialog.ui
 msgid "Transaction Summary"
-msgstr ""
+msgstr "ტრანზაქციის შეჯამება"
 
 #: ../data/interface/transaction_sum_dialog.ui
 msgid "Commit"
-msgstr ""
+msgstr "განხორციელება"
 
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
-msgstr ""
+msgstr "მონაცემთა ბაზების განახლება"
 
 #: ../data/interface/manager_window.ui
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: ../data/interface/manager_window.ui
 msgid "State"
-msgstr ""
+msgstr "სტატუსი"
 
 #: ../data/interface/manager_window.ui
 msgid "Repositories"
-msgstr ""
+msgstr "საცავები"
 
 #: ../data/interface/manager_window.ui
 msgid "Updates"
-msgstr ""
+msgstr "განახლებები"
 
 #: ../data/interface/manager_window.ui
 msgid "Version"
-msgstr ""
+msgstr "ვერსია"
 
 #: ../data/interface/manager_window.ui
 msgid "Size"
-msgstr ""
+msgstr "ზომა"
 
 #: ../data/interface/manager_window.ui
 msgid "Popularity"
-msgstr ""
+msgstr "პოპულარობა"
 
 #: ../data/interface/manager_window.ui ../data/interface/preferences_dialog.ui
 msgid "AUR"
-msgstr ""
+msgstr "AUR"
 
 #: ../data/interface/manager_window.ui
 msgid "Browse"
-msgstr ""
+msgstr "დათვალიერება"
 
 #: ../data/interface/manager_window.ui
 msgid "Reinstall"
-msgstr ""
+msgstr "ხელახლა დაყენება"
 
 #: ../data/interface/manager_window.ui
 msgid "Dependencies"
-msgstr ""
+msgstr "დამოკიდებულებები"
 
 #: ../data/interface/manager_window.ui
 msgid "Files"
-msgstr ""
+msgstr "ფაილები"
 
 #: ../data/interface/manager_window.ui
 msgid "_Apply"
-msgstr ""
+msgstr "დაწყება"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Remove unrequired dependencies"
-msgstr ""
+msgstr "არასაჭირო დამოკიდებულებების მოცილება"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
 "When removing a package, also remove its dependencies that are not required "
 "by other packages"
 msgstr ""
+"პაკეტის მოცილებისას, ასევე მოაცილე მისი ის დამოკიდებულებები, "
+"რომლებიც არ ესაჭიროება სხვა პაკეტებს"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
-msgstr ""
+msgstr "დისკზე ხელმისაწვდომი სივრცის შემოწმება"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates"
@@ -687,51 +695,51 @@ msgstr "განახლებების შემოწმება"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Update files databases (more details but slower)"
-msgstr ""
+msgstr "ფაილების მონაცემთა ბაზების განახლება(მეტი დეტალია, მაგრამ უფრო ნელია)"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"
-msgstr ""
+msgstr "დამალე ხატულა ლანგარზე, როდესაც განახლებები არაა ხელმისაწვდომი"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Ignore upgrades for:"
-msgstr ""
+msgstr "გამოტოვე მათი განახლებები:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Background color:"
-msgstr ""
+msgstr "ფონის ფერი:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Text color:"
-msgstr ""
+msgstr "ტექსტის ფერი:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Font:"
-msgstr ""
+msgstr "შრიფტი:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Terminal"
-msgstr ""
+msgstr "ტერმინალი"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
-msgstr ""
+msgstr "გამოიყენე სარკეები:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Sort mirrors by:"
-msgstr ""
+msgstr "სარკეების დალაგება:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Refresh Mirrors List"
-msgstr ""
+msgstr "სარკეების სიის განახლება"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Official Repositories"
-msgstr ""
+msgstr "ოფიციალური საცავები"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
@@ -739,18 +747,21 @@ msgid ""
 "problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
+"AUR არის საზოგადოების მიერ შემუშავებული საცავი, ამიტომ ის წარმოადგენს პოტენციურ "
+"რისკებს და პრობლემებს.\n"
+"AUR-ის ყველა მომხმარებელი უნდა იცნობდეს აგების პროცესს."
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
-msgstr ""
+msgstr "AUR-ის მხარდაჭერის ჩართვა"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Allow Pamac to search and install packages from AUR"
-msgstr ""
+msgstr "ნება დართეთ Pamac-ს, რომ მოძებნოს და დააყენოს პაკეტები AUR-იდან"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Search in AUR by default"
-msgstr ""
+msgstr "ავტომატურად AUR-შიც მოიძებნოს"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates from AUR"
@@ -758,16 +769,16 @@ msgstr "განახლებების შემოწმება AUR-ი
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Remove only the versions of uninstalled packages"
-msgstr ""
+msgstr "მხოლოდ წაშლილი პაკეტების ვერსიების მოცილება"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Clean cache"
-msgstr ""
+msgstr "ქეშის გაწმენდა"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
-msgstr ""
+msgstr "ქეში"
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
-msgstr ""
+msgstr "აირჩიეთ გამოსატოვებელი განახლებები"
