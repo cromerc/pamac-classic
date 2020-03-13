@@ -51,7 +51,7 @@ namespace Pamac {
 	}
 
 	public struct ErrorInfos {
-		public uint errno;
+		public uint errnos;
 		public string message;
 		public string[] details;
 		public ErrorInfos () {

@@ -2037,7 +2037,7 @@ namespace Pamac {
 				// if it is an authentication or a download error, database was not modified
 				var err = get_current_error ();
 				if (err.message == dgettext (null, "Authentication failed")
-					|| err.errno == 54) { //Alpm.Errno.EXTERNAL_DOWNLOAD
+					|| err.errnos == 54) { //Alpm.Errno.EXTERNAL_DOWNLOAD
 					// recover old pkgnames
 					foreach (unowned string name in previous_to_install) {
 						to_install.add (name);
