@@ -1992,7 +1992,18 @@ namespace Pamac {
 			this.success = success;
 			// needed before build_aur_packages and remove_makedeps
 			no_confirm_commit = false;
+			Notify.init ("pamac-classic");
 			if (success) {
+				string summary = dgettext (null, "Transaction successful");
+				string body = dgettext (null, "The transaction has been completed successfully");
+				string icon = "system-software-install";
+				Notify.Notification notification = new Notify.Notification (summary, body, icon);
+				try {
+					notification.show ();
+				} catch (Error e) {
+					stderr.printf ("Error: %s\n", e.message);
+				}
+				
 				show_warnings ();
 				to_load.remove_all ();
 #if DISABLE_AUR
@@ -2034,6 +2045,16 @@ namespace Pamac {
 				}
 #endif
 			} else {
+				string summary = dgettext (null, "Transaction failed");
+				string body = dgettext (null, "The transaction failed and no packages have been updated/installed");
+				string icon = "system-software-install";
+				Notify.Notification notification = new Notify.Notification (summary, body, icon);
+				try {
+					notification.show ();
+				} catch (Error e) {
+					stderr.printf ("Error: %s\n", e.message);
+				}
+				
 				// if it is an authentication or a download error, database was not modified
 				var err = get_current_error ();
 				if (err.message == dgettext (null, "Authentication failed")
@@ -2056,6 +2077,9 @@ namespace Pamac {
 				warning_textbuffer = new StringBuilder ();
 				handle_error (err);
 			}
+			
+			Notify.uninit ();
+			
 			total_download = 0;
 			already_downloaded = 0;
 			previous_filename = "";

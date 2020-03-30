@@ -1,4 +1,5 @@
 posix
+libnotify
 atk
 cairo
 gdk-3.0

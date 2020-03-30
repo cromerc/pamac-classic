@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2019-10-23 15:05-0300\n"
+"POT-Creation-Date: 2020-03-29 21:48-0300\n"
 "PO-Revision-Date: 2020-01-02 12:41-0300\n"
 "Last-Translator: zura davitashvili <zdavitashvili0@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -84,7 +84,8 @@ msgstr "შეუძლებელია %s-ის მიერ მოთხო
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr "%s (%s)-ის დაყენება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
+msgstr ""
+"%s (%s)-ის დაყენება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -330,8 +331,24 @@ msgid "Nothing to do"
 msgstr "გასაკეთებელი არაფერია"
 
 #: ../src/transaction.vala
+msgid "Transaction successful"
+msgstr ""
+
+#: ../src/transaction.vala
+msgid "The transaction has been completed successfully"
+msgstr ""
+
+#: ../src/transaction.vala
 msgid "Transaction successfully finished"
 msgstr "ტრანზაქცია წარმატებით დასრულდა"
+
+#: ../src/transaction.vala
+msgid "Transaction failed"
+msgstr ""
+
+#: ../src/transaction.vala
+msgid "The transaction failed and no packages have been updated/installed"
+msgstr ""
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
@@ -546,7 +563,8 @@ msgid "Name"
 msgstr "სახელი"
 
 #: ../src/pamac-manager/manager_window.vala
-#: ../data/interface/transaction_sum_dialog.ui ../data/interface/manager_window.ui
+#: ../data/interface/transaction_sum_dialog.ui
+#: ../data/interface/manager_window.ui
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "_Cancel"
 msgstr "გაუქმება"
@@ -678,8 +696,8 @@ msgstr "არასაჭირო დამოკიდებულებე�
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"When removing a package, also remove its dependencies that are not required by "
-"other packages"
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
 msgstr ""
 "პაკეტის მოცილებისას, ასევე მოაცილე მისი ის დამოკიდებულებები, რომლებიც არ "
 "ესაჭიროება სხვა პაკეტებს"
@@ -746,8 +764,8 @@ msgid ""
 "problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR არის საზოგადოების მიერ შემუშავებული საცავი, ამიტომ ის წარმოადგენს პოტენციურ "
-"რისკებს და პრობლემებს.\n"
+"AUR არის საზოგადოების მიერ შემუშავებული საცავი, ამიტომ ის წარმოადგენს "
+"პოტენციურ რისკებს და პრობლემებს.\n"
 "AUR-ის ყველა მომხმარებელი უნდა იცნობდეს აგების პროცესს."
 
 #: ../data/interface/preferences_dialog.ui

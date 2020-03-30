@@ -4,7 +4,7 @@ cfg_pamac_clean_cache.set('PKGDATADIR', join_paths(get_option('prefix'),get_opti
 cfg_pamac_clean_cache.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_clean_cache.set('RELEASE_NAME', 'pamac')
 cfg_pamac_clean_cache.set('PREFIX', get_option('prefix'))
-cfg_pamac_clean_cache.set('VERSION', '7.1.3')
+cfg_pamac_clean_cache.set('VERSION', '7.2.0')
 cfg_pamac_clean_cache.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_4 = configure_file(

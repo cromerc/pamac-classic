@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2019-10-23 15:05-0300\n"
+"POT-Creation-Date: 2020-03-29 21:48-0300\n"
 "PO-Revision-Date: 2017-08-01 11:22+0000\n"
 "Last-Translator: Galin Iskrenov <loot270@abv.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/manjarolinux/manjaro-"
@@ -332,8 +332,24 @@ msgid "Nothing to do"
 msgstr "Нищо за правене"
 
 #: ../src/transaction.vala
+msgid "Transaction successful"
+msgstr ""
+
+#: ../src/transaction.vala
+msgid "The transaction has been completed successfully"
+msgstr ""
+
+#: ../src/transaction.vala
 msgid "Transaction successfully finished"
 msgstr "Успешно завършена транзакция"
+
+#: ../src/transaction.vala
+msgid "Transaction failed"
+msgstr ""
+
+#: ../src/transaction.vala
+msgid "The transaction failed and no packages have been updated/installed"
+msgstr ""
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
