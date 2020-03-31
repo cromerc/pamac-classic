@@ -7,7 +7,7 @@
 # arabuli <arabulibeqa@yahoo.com>, 2015
 # arabuli <arabulibeqa@yahoo.com>, 2015
 # giorgi shashviashvili <giorgishashviashvili@outlook.com>, 2019
-# zura davitashvili <zdavitashvili0@gmail.com>, 2019
+# zura davitashvili <zdavitashvili0@gmail.com>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
@@ -79,18 +79,18 @@ msgstr "პაკეტ %s-ს არ აქვს დაშვებული �
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "unable to satisfy dependency '%s' required by %s"
-msgstr "შეუძლებელია %s-ის მიერ მოთხოვნილი '%s' დამოკიდებულების დაკმაყოფილება"
+msgstr "შეუძლებელია %s-(ი)ს მიერ მოთხოვნილი '%s' დამოკიდებულების დაკმაყოფილება"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
 msgstr ""
-"%s (%s)-ის დაყენება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
+"%s (%s)-(ი)ს დაყენება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "removing %s breaks dependency '%s' required by %s"
-msgstr "%s-ის მოცილება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
+msgstr "%s-(ი)ს მოცილება აზიანებს დამოკიდებულებას '%s', რომელსაც მოითხოვს %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -129,7 +129,7 @@ msgstr "როგორც ჩანს %s შემცირებულია:
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "failed retrieving file '%s' from %s : %s\n"
-msgstr "'%s' ფაილის მიღება ვერ მოხერხდა %s : %s-იდან\n"
+msgstr "'%s' ფაილის მიღება ვერ მოხერხდა %s : %s-(ი)დან\n"
 
 #: ../src/transaction.vala
 msgid "Copy"
@@ -137,7 +137,7 @@ msgstr "ასლი"
 
 #: ../src/transaction.vala
 msgid "Refreshing mirrors list"
-msgstr "ახლდება საარკეების სია"
+msgstr "ახლდება სარკეების სია"
 
 #: ../src/transaction.vala
 msgid "Synchronizing package databases"
@@ -154,7 +154,7 @@ msgstr "მზადდება"
 #: ../src/transaction.vala
 #, c-format
 msgid "Choose a provider for %s"
-msgstr "%s-ისთვის მომწოდებლის არჩევა"
+msgstr "%s-(ი)სთვის მომწოდებლის არჩევა"
 
 #: ../src/transaction.vala
 msgid "To remove"
@@ -268,7 +268,7 @@ msgstr "%s მეორეხარისხოვნად მოითხო�
 #: ../src/transaction.vala
 #, c-format
 msgid "Database file for %s does not exist"
-msgstr "%s-ისთვის მონაცემთა ბაზის ფაილი არ არსებობს"
+msgstr "%s-(ი)სთვის მონაცემთა ბაზის ფაილი არ არსებობს"
 
 #: ../src/transaction.vala
 msgid "Checking keyring"
@@ -332,11 +332,11 @@ msgstr "გასაკეთებელი არაფერია"
 
 #: ../src/transaction.vala
 msgid "Transaction successful"
-msgstr ""
+msgstr "ტრანზაქცია წარმატებულია"
 
 #: ../src/transaction.vala
 msgid "The transaction has been completed successfully"
-msgstr ""
+msgstr "ტრანზაქცია წარმატებით დასრულდა"
 
 #: ../src/transaction.vala
 msgid "Transaction successfully finished"
@@ -344,11 +344,11 @@ msgstr "ტრანზაქცია წარმატებით დას�
 
 #: ../src/transaction.vala
 msgid "Transaction failed"
-msgstr ""
+msgstr "ტრანზაქცია ვერ მოხერხდა"
 
 #: ../src/transaction.vala
 msgid "The transaction failed and no packages have been updated/installed"
-msgstr ""
+msgstr "ტრანზაქცია ვერ მოხერხდა და არცერთი პაკეტი არ განახლებულა/დაყენებულა"
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
@@ -356,7 +356,7 @@ msgstr "მონაცემთა ბაზის ჩაკეტვა შე
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
-msgstr "თქვენი სისტემა უახლესია"
+msgstr "თქვენი სისტემა განახლებულია"
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Package Manager"
