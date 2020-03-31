@@ -10,7 +10,7 @@
 # Ondrej Cesik <ondrej.cesik@gmail.com>, 2017
 # philm <philm@manjaro.org>, 2015
 # Scibex <kroupa@wvw.cz>, 2013
-# halfark <vojtechprecechtel@gmail.com>, 2014,2016
+# Pavel Dvorak <dvorapa~seznam~cz>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
@@ -81,17 +81,17 @@ msgstr "balíček %s nemá platnou architekturu"
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "unable to satisfy dependency '%s' required by %s"
-msgstr ""
+msgstr "není možné získat závislost „%s“ požadovanou balíčkem %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "instalace %s (%s) rozbije závislost „%s“ požadovanou balíčkem %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "removing %s breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "odinstalace %s rozbije závislost „%s“ požadovanou balíčkem %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -179,7 +179,7 @@ msgstr "Pro přeinstalaci"
 
 #: ../src/transaction.vala
 msgid "To upgrade"
-msgstr ""
+msgstr "Pro aktualizaci"
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -334,11 +334,11 @@ msgstr "Spolu nesouvisí"
 
 #: ../src/transaction.vala
 msgid "Transaction successful"
-msgstr ""
+msgstr "Transakce úspěšná"
 
 #: ../src/transaction.vala
 msgid "The transaction has been completed successfully"
-msgstr ""
+msgstr "Transakce byla úspěšně dokončena"
 
 #: ../src/transaction.vala
 msgid "Transaction successfully finished"
@@ -346,15 +346,15 @@ msgstr "Transakce úspěšně dokončena"
 
 #: ../src/transaction.vala
 msgid "Transaction failed"
-msgstr ""
+msgstr "Transakce neúspěšná"
 
 #: ../src/transaction.vala
 msgid "The transaction failed and no packages have been updated/installed"
-msgstr ""
+msgstr "Transakce neúspěšná a žádné balíčky nebyly aktualizovány/nainstalovány"
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
-msgstr ""
+msgstr "Nelze uzamknout databázi!"
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -387,7 +387,7 @@ msgstr "Pamac je již spuštěn"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
-msgstr ""
+msgstr "Aktualizovat databáze"
 
 #: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
 msgid "View History"
@@ -408,7 +408,7 @@ msgstr "O programu"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Quit"
-msgstr ""
+msgstr "Ukončit"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
@@ -416,7 +416,7 @@ msgstr "Zrušit výběr"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Upgrade"
-msgstr ""
+msgstr "Aktualizace"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Install"
@@ -472,11 +472,11 @@ msgstr "Repozitář"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Download size"
-msgstr ""
+msgstr "Velikost stahovaná"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Installed size"
-msgstr ""
+msgstr "Velikost instalace"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Groups"
@@ -595,7 +595,7 @@ msgstr "Počet verzí od každého balíčku udržovaného v paměti cache."
 
 #: ../src/preferences_dialog.vala
 msgid "Build directory"
-msgstr ""
+msgstr "Složka pro sestavování"
 
 #: ../src/preferences_dialog.vala
 msgid "Worldwide"
@@ -656,7 +656,7 @@ msgstr "Repozitáře"
 
 #: ../data/interface/manager_window.ui
 msgid "Updates"
-msgstr ""
+msgstr "Aktualizace"
 
 #: ../data/interface/manager_window.ui
 msgid "Version"
@@ -716,7 +716,7 @@ msgstr "Kontrola aktualizací"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Update files databases (more details but slower)"
-msgstr ""
+msgstr "Aktualizovat databáze souborů (více detailů, ale pomalejší)"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"
@@ -732,19 +732,19 @@ msgstr "Obecné"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Background color:"
-msgstr ""
+msgstr "Barva pozadí:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Text color:"
-msgstr ""
+msgstr "Barva textu:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Font:"
-msgstr ""
+msgstr "Písmo:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Terminal"
-msgstr ""
+msgstr "Terminál"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
@@ -818,4 +818,4 @@ msgstr "Vybrat ignorované aktualizace"
 #~ msgstr "Generování bylo úspěšné"
 
 #~ msgid "Generation failed"
-#~ msgstr "Generování bylo selhalo"
+#~ msgstr "Generování selhalo"
