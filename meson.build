@@ -22,7 +22,7 @@ if KDE_TRAY
 appindicator3_0_1_dep = dependency('appindicator3-0.1')
 endif
 atk_dep = dependency('atk')
-cairo_dep = dependency('cairo')
+cairo_gobject_dep = dependency('cairo-gobject')
 gdk_3_0_dep = dependency('gdk-3.0')
 gdk_pixbuf_2_0_dep = dependency('gdk-pixbuf-2.0')
 gio_2_0_dep = dependency('gio-2.0')

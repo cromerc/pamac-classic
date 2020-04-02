@@ -4,7 +4,7 @@ cfg_pamac.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'
 cfg_pamac.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac.set('RELEASE_NAME', 'pamac')
 cfg_pamac.set('PREFIX', get_option('prefix'))
-cfg_pamac.set('VERSION', '7.2.0')
+cfg_pamac.set('VERSION', '7.2.1')
 cfg_pamac.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(
@@ -14,7 +14,7 @@ cfgfile_1 = configure_file(
 
 pamac_deps = [libnotify_dep]
 pamac_deps += [atk_dep]
-pamac_deps += [cairo_dep]
+pamac_deps += [cairo_gobject_dep]
 pamac_deps += [gdk_3_0_dep]
 pamac_deps += [gdk_pixbuf_2_0_dep]
 pamac_deps += [gio_2_0_dep]
@@ -70,7 +70,7 @@ Pamac_library = shared_library('Pamac', pamac_sources,
     vala_args: pamac_vala_args,
     c_args: pamac_c_args,
     link_args: pamac_link_args,
-    version: '7.2.0',
+    version: '7.2.1',
     soversion: '7',
     install: true,
     install_dir: [true, true, true, true])
@@ -85,7 +85,7 @@ custom_target('Pamac typelib', command: [g_ir_compiler, '--shared-library=libPam
 pamac_requires = []
 pamac_requires += ['libnotify']
 pamac_requires += ['atk']
-pamac_requires += ['cairo']
+pamac_requires += ['cairo-gobject']
 pamac_requires += ['gdk-3.0']
 pamac_requires += ['gdk-pixbuf-2.0']
 pamac_requires += ['gio-2.0']
@@ -100,7 +100,7 @@ pamac_requires += ['vte-2.91']
 pamac_requires += ['x11']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : Pamac_library,
-	version : '7.2.0',
+	version : '7.2.1',
 	name : 'Pamac',
 	filebase : 'Pamac',
 	description : 'Pamac',

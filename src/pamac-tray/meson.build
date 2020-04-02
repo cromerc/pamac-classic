@@ -4,7 +4,7 @@ cfg_pamac_tray.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('dat
 cfg_pamac_tray.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_tray.set('RELEASE_NAME', 'pamac')
 cfg_pamac_tray.set('PREFIX', get_option('prefix'))
-cfg_pamac_tray.set('VERSION', '7.2.0')
+cfg_pamac_tray.set('VERSION', '7.2.1')
 cfg_pamac_tray.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_3 = configure_file(
