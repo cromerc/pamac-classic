@@ -33,7 +33,7 @@ msgstr "Neznámý"
 #: ../src/pamac-user-daemon/user_daemon.vala
 #: ../src/pamac-manager/manager_window.vala
 msgid "Explicitly installed"
-msgstr "explicitně nainstalován"
+msgstr "Explicitně nainstalováno"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 #: ../src/pamac-manager/manager_window.vala
