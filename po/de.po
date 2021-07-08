@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2020-03-29 21:48-0300\n"
-"PO-Revision-Date: 2017-07-30 02:40+0000\n"
+"PO-Revision-Date: 2021-07-08 16:25+0200\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: German (http://www.transifex.com/manjarolinux/manjaro-pamac/"
 "language/de/)\n"
@@ -112,7 +112,7 @@ msgstr "%s und %s stehen im Konflikt zueinander"
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "%s needs to be removed but it is a locked package"
-msgstr "%s soll entfernt werden, ist aber ein gesperrtes Paket "
+msgstr "%s soll entfernt werden, ist aber ein gesperrtes Paket"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 msgid "Failed to commit transaction"
@@ -344,11 +344,11 @@ msgstr "Es gibt nichts zu tun"
 
 #: ../src/transaction.vala
 msgid "Transaction successful"
-msgstr ""
+msgstr "Transaktion erfolgreich"
 
 #: ../src/transaction.vala
 msgid "The transaction has been completed successfully"
-msgstr ""
+msgstr "Die Transaktion wurde erfolgreich abgeschlossen"
 
 #: ../src/transaction.vala
 msgid "Transaction successfully finished"
@@ -356,11 +356,13 @@ msgstr "Vorgang erfolgreich abgeschlossen"
 
 #: ../src/transaction.vala
 msgid "Transaction failed"
-msgstr ""
+msgstr "Transaktion fehlgeschlagen"
 
 #: ../src/transaction.vala
 msgid "The transaction failed and no packages have been updated/installed"
 msgstr ""
+"Die Transaktion ist fehlgeschlagen und es wurden keine Pakete aktualisiert/"
+"installiert"
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
@@ -758,7 +760,7 @@ msgstr "Schrift:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Terminal"
-msgstr ""
+msgstr "Terminal"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
