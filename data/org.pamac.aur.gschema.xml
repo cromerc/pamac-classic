@@ -28,5 +28,19 @@
 				Directory where to build packages that come from the AUR
 			</description>
 		</key>
+		<key name="aur-keep-pkgs" type="b">
+			<default>false</default>
+			<summary>Copy AUR packages</summary>
+			<description>
+				Save built packages on disk
+			</description>
+		</key>
+		<key name="move-directory" type="s">
+			<default l10n="messages">""</default>
+			<summary>AUR package directory</summary>
+			<description>
+				Directory where to move built packages that come from the AUR
+			</description>
+		</key>
 	</schema>
 </schemalist>

@@ -65,6 +65,12 @@ namespace Pamac {
 		Gtk.FileChooserButton aur_build_dir_file_chooser;
 		[GtkChild]
 		Gtk.CheckButton check_aur_updates_checkbutton;
+		[GtkChild]
+		Gtk.Switch aur_keep_pkgs_button;
+		[GtkChild]
+		Gtk.Label aur_move_dir_label;
+		[GtkChild]
+		Gtk.FileChooserButton aur_move_dir_file_chooser;
 #endif
 		[GtkChild]
 		Gtk.Label cache_keep_nb_label;
@@ -94,6 +100,7 @@ namespace Pamac {
 			stack.remove (aur_config_box);
 #else
 			aur_build_dir_label.set_markup (dgettext (null, "Build directory") +":");
+			aur_move_dir_label.set_markup (dgettext (null, "Package directory") +":");
 #endif
 			remove_unrequired_deps_button.active = transaction.recurse;
 			update_files_db_button.active = transaction.update_files_db;
@@ -193,6 +200,13 @@ namespace Pamac {
 			search_aur_checkbutton.toggled.connect (on_search_aur_checkbutton_toggled);
 			aur_build_dir_file_chooser.file_set.connect (on_aur_build_dir_set);
 			check_aur_updates_checkbutton.toggled.connect (on_check_aur_updates_checkbutton_toggled);
+			aur_keep_pkgs_button.sensitive = transaction.enable_aur;
+			aur_keep_pkgs_button.active = transaction.aur_keep_pkgs;
+			aur_keep_pkgs_button.state_set.connect(on_aur_keep_pkgs_button_state_set);
+			aur_move_dir_label.sensitive = transaction.enable_aur && transaction.aur_keep_pkgs;
+			aur_move_dir_file_chooser.sensitive = transaction.enable_aur && transaction.aur_keep_pkgs;
+			aur_move_dir_file_chooser.set_filename(transaction.aur_move_dir);
+			aur_move_dir_file_chooser.file_set.connect(on_aur_move_dir_set);
 #endif
 		}
 
@@ -289,6 +303,14 @@ namespace Pamac {
 			transaction.start_save_pamac_config ();
 			return true;
 		}
+		
+		bool on_aur_keep_pkgs_button_state_set (bool new_state) {
+			var settings = new Settings ("org.pamac.aur");
+			settings.set_boolean ("aur-keep-pkgs", new_state);
+			config_changed();
+			transaction.start_save_pamac_config ();
+			return true;
+		}
 
 		void on_search_aur_checkbutton_toggled () {
 			var settings = new Settings ("org.pamac.aur");
@@ -300,6 +322,13 @@ namespace Pamac {
 		void on_aur_build_dir_set () {
 			var settings = new Settings ("org.pamac.aur");
 			settings.set_string ("build-directory", aur_build_dir_file_chooser.get_filename ());
+			config_changed();
+			transaction.start_save_pamac_config ();
+		}
+		
+		void on_aur_move_dir_set () {
+			var settings = new Settings ("org.pamac.aur");
+			settings.set_string ("move-directory", aur_move_dir_file_chooser.get_filename ());
 			config_changed();
 			transaction.start_save_pamac_config ();
 		}
@@ -341,6 +370,10 @@ namespace Pamac {
 			aur_build_dir_file_chooser.sensitive = transaction.enable_aur;
 			check_aur_updates_checkbutton.active = transaction.check_aur_updates;
 			check_aur_updates_checkbutton.sensitive = transaction.enable_aur;
+			aur_keep_pkgs_button.sensitive = transaction.enable_aur;
+			aur_keep_pkgs_button.state = transaction.aur_keep_pkgs;
+			aur_move_dir_label.sensitive = transaction.enable_aur && transaction.aur_keep_pkgs;
+			aur_move_dir_file_chooser.sensitive = transaction.enable_aur && transaction.aur_keep_pkgs; 
 #endif
 		}
 

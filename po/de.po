@@ -92,17 +92,17 @@ msgstr "Paket %s hat keine gültige Architektur"
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "unable to satisfy dependency '%s' required by %s"
-msgstr ""
+msgstr "Kann Abhängigkeit '%s' von %s nicht erfüllen"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "Installation von %s (%s) verletzt Abhängigkeit '%s' von %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "removing %s breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "Entfernen von %s verletzt Abhängigkeit '%s' von %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -190,7 +190,7 @@ msgstr "Wird neu installiert"
 
 #: ../src/transaction.vala
 msgid "To upgrade"
-msgstr ""
+msgstr "Zu aktualisieren"
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -364,7 +364,7 @@ msgstr ""
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
-msgstr ""
+msgstr "Kann Datenbank nicht sperren!"
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -396,7 +396,7 @@ msgstr "Pamac wird bereits ausgeführt"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
-msgstr ""
+msgstr "Datenbanken aktualisieren"
 
 #: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
 msgid "View History"
@@ -417,7 +417,7 @@ msgstr "Über"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Quit"
-msgstr ""
+msgstr "Schließen"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
@@ -425,7 +425,7 @@ msgstr "Abwählen"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Upgrade"
-msgstr ""
+msgstr "Aktualisieren"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Install"
@@ -480,11 +480,11 @@ msgstr "Paketquelle"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Download size"
-msgstr ""
+msgstr "Download Größe"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Installed size"
-msgstr ""
+msgstr "Installierte Größe"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Groups"
@@ -603,7 +603,11 @@ msgstr "Anzahl der im Cache verbleibenden Paketversionen"
 
 #: ../src/preferences_dialog.vala
 msgid "Build directory"
-msgstr ""
+msgstr "Build Verzeichnis"
+
+#: ../src/preferences_dialog.vala
+msgid "Package directory"
+msgstr "Paket Verzeichnis"
 
 #: ../src/preferences_dialog.vala
 msgid "Worldwide"
@@ -664,7 +668,7 @@ msgstr "Paketquellen"
 
 #: ../data/interface/manager_window.ui
 msgid "Updates"
-msgstr ""
+msgstr "Aktualisierungen"
 
 #: ../data/interface/manager_window.ui
 msgid "Version"
@@ -724,7 +728,7 @@ msgstr "Suche nach Aktualisierungen"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Update files databases (more details but slower)"
-msgstr ""
+msgstr "Aktualisiere Datei-Datenbanken (mehr Details, aber langsamer)"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"
@@ -742,15 +746,15 @@ msgstr "Allgemein"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Background color:"
-msgstr ""
+msgstr "Hintergrund Farbe:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Text color:"
-msgstr ""
+msgstr "Text Farbe:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Font:"
-msgstr ""
+msgstr "Schrift:"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Terminal"
@@ -797,6 +801,10 @@ msgstr "Suche standardmäßig im AUR"
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates from AUR"
 msgstr "Suche nach Aktualisierungen aus dem AUR"
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Keep built packages"
+msgstr "Behalte erstellte Pakete"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Remove only the versions of uninstalled packages"

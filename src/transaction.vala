@@ -114,7 +114,7 @@ namespace Pamac {
 		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
 #else
 		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
+														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates, bool aur_keep_pkgs, string aur_move_dir);
 #endif
 		public signal void write_alpm_config_finished (bool checkspace);
 		public signal void write_mirrors_config_finished (string choosen_country, string choosen_generation_method);
@@ -146,6 +146,8 @@ namespace Pamac {
 		public bool enable_aur { get { return pamac_config.enable_aur; }  }
 		public bool search_aur { get { return pamac_config.search_aur; } }
 		public string aur_build_dir { get { return pamac_config.aur_build_dir; } }
+		public bool aur_keep_pkgs { get { return pamac_config.aur_keep_pkgs; } }
+		public string aur_move_dir { get { return pamac_config.aur_move_dir; } }
 #endif
 		public uint64 keep_num_pkgs { get { return pamac_config.keep_num_pkgs; } }
 		public bool rm_only_uninstalled { get { return pamac_config.rm_only_uninstalled; } }
@@ -228,7 +230,7 @@ namespace Pamac {
 		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
 #else
 		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
+														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates, bool aur_keep_pkgs, string aur_move_dir);
 #endif
 		public signal void write_alpm_config_finished (bool checkspace);
 		public signal void write_mirrors_config_finished (string choosen_country, string choosen_generation_method);
@@ -1401,6 +1403,9 @@ namespace Pamac {
 											foreach (unowned string path in standard_output.split ("\n")) {
 												if (path != "" && !(path in built_pkgs)) {
 													built_pkgs += path;
+													if(aur_keep_pkgs) {
+														yield spawn_in_term ({"cp", path, aur_move_dir});
+													}
 												}
 											}
 										}
@@ -2094,7 +2099,7 @@ namespace Pamac {
 		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
 #else
 		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
+											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates, bool aur_keep_pkgs, string aur_move_dir) {
 #endif
 			system_daemon.save_pamac_config_finished.disconnect (on_save_pamac_config_finished);
 			pamac_config.reload ();
@@ -2106,7 +2111,7 @@ namespace Pamac {
 			save_pamac_config_finished (recurse, refresh_period, no_update_hide_icon);
 #else
 			save_pamac_config_finished (recurse, refresh_period, no_update_hide_icon,
-											enable_aur, search_aur, aur_build_dir, check_aur_updates);
+											enable_aur, search_aur, aur_build_dir, check_aur_updates, aur_keep_pkgs, aur_move_dir);
 #endif
 		}
 
