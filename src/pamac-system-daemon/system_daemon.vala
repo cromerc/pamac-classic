@@ -1776,8 +1776,9 @@ private void cb_event (void *ctx, Alpm.Event.Data data) {
 			if (system_daemon.cancellable.is_cancelled ()) {
 				return;
 			}
-			details += data.pkgdownload_file;
-			break;
+			system_daemon.emit_totaldownload (data.pkg_retrieve_total_size);
+			// event will be emitted by cb_fetch
+			return;
 		case Alpm.Event.Type.OPTDEP_REMOVAL:
 			details += data.optdep_removal_pkg.name;
 			details += data.optdep_removal_optdep.compute_string ();
@@ -1909,6 +1910,8 @@ private int cb_fetch (void *ctx, string fileurl, string localpath, int force) {
 	var url = GLib.File.new_for_uri (fileurl);
 	var destfile = GLib.File.new_for_path (localpath + url.get_basename ());
 	var tempfile = GLib.File.new_for_path (destfile.get_path () + ".part");
+
+	system_daemon.emit_event(Alpm.Event.Type.PKG_RETRIEVE_START, 0, {url.get_basename ()});
 
 	system_daemon.curl.reset ();
 	system_daemon.curl.setopt (Curl.Option.FAILONERROR, 1L);
@@ -2076,9 +2079,9 @@ private int cb_fetch (void *ctx, string fileurl, string localpath, int force) {
 }
 
 private void cb_download (void* ctx, string filename, Alpm.Download.Event event_type, void* event_data) {
-	// TODO: implement alpm_cb_download
-	// if (event_type == Alpm.Download.Event.COMPLETED)...
-	// system_daemon.emit_totaldownload (total);
+	if (event_type == Alpm.Download.Event.COMPLETED) {
+		system_daemon.emit_totaldownload (((Alpm.Download.Completed) event_data).total);
+	}
 }
 
 private void cb_log (void *ctx, Alpm.LogLevel level, string fmt, va_list args) {
