@@ -1548,15 +1548,15 @@ namespace Pamac {
 					detailed_action = details[0].replace ("\n", "");
 					important_details_outpout (false);
 					break;
-				case Alpm.Event.Type.RETRIEVE_START:
+				case Alpm.Event.Type.DB_RETRIEVE_START:
 					start_downloading ();
 					action = dgettext (null, "Downloading") + "...";
 					break;
-				case Alpm.Event.Type.RETRIEVE_DONE:
-				case Alpm.Event.Type.RETRIEVE_FAILED:
+				case Alpm.Event.Type.DB_RETRIEVE_DONE:
+				case Alpm.Event.Type.DB_RETRIEVE_FAILED:
 					stop_downloading ();
 					break;
-				case Alpm.Event.Type.PKGDOWNLOAD_START:
+				case Alpm.Event.Type.PKG_RETRIEVE_START:
 					// special case handle differently
 					show_in_term (dgettext (null, "Downloading %s").printf (details[0]) + "...");
 					string name_version_release = details[0].slice (0, details[0].last_index_of_char ('-'));

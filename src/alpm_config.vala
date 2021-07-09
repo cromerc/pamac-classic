@@ -51,7 +51,6 @@ public class AlpmConfig {
 	string? dbpath;
 	string? logfile;
 	string? gpgdir;
-	string? arch;
 	int usesyslog;
 	public int checkspace;
 	GLib.List<string> cachedirs;
@@ -62,6 +61,7 @@ public class AlpmConfig {
 	GLib.List<string> noupgrades;
 	GLib.List<string> holdpkgs;
 	GLib.List<string> syncfirsts;
+	GLib.List<string> architectures;
 	Alpm.Signature.Level siglevel;
 	Alpm.Signature.Level localfilesiglevel;
 	Alpm.Signature.Level remotefilesiglevel;
@@ -93,6 +93,7 @@ public class AlpmConfig {
 		noupgrades = new GLib.List<string> ();
 		holdpkgs = new GLib.List<string> ();
 		syncfirsts = new GLib.List<string> ();
+		architectures = new GLib.List<string> ();
 		usesyslog = 0;
 		checkspace = 0;
 		siglevel = Alpm.Signature.Level.PACKAGE | Alpm.Signature.Level.PACKAGE_OPTIONAL | Alpm.Signature.Level.DATABASE | Alpm.Signature.Level.DATABASE_OPTIONAL;
@@ -130,8 +131,8 @@ public class AlpmConfig {
 			// rootdir is defined because it contains configuration data.
 			gpgdir = "/etc/pacman.d/gnupg/";
 		}
-		if (arch == null) {
-			arch = Posix.utsname().machine;
+		if (architectures.length () == 0) {
+			architectures.append (Posix.utsname().machine);
 		}
 	}
 
@@ -171,7 +172,9 @@ public class AlpmConfig {
 			handle.logfile = logfile;
 		}
 		handle.gpgdir = gpgdir;
-		handle.arch = arch;
+		foreach (unowned string arch in architectures) {
+			handle.add_architecture (arch);
+		}
 		handle.usesyslog = usesyslog;
 		handle.checkspace = checkspace;
 		handle.defaultsiglevel = siglevel;
@@ -202,7 +205,9 @@ public class AlpmConfig {
 			repo.siglevel = merge_siglevel (siglevel, repo.siglevel, repo.siglevel_mask);
 			unowned Alpm.DB db = handle.register_syncdb (repo.name, repo.siglevel);
 			foreach (unowned string url in repo.urls) {
-				db.add_server (url.replace ("$repo", repo.name).replace ("$arch", handle.arch));
+				foreach (unowned string arch in architectures) {
+					db.add_server (url.replace ("$repo", repo.name).replace ("$arch", arch));
+				}
 			}
 			if (repo.usage == 0) {
 				db.usage = Alpm.DB.Usage.ALL;
@@ -272,10 +277,12 @@ public class AlpmConfig {
 						} else if (key == "LogFile") {
 							logfile = val;
 						} else if (key == "Architecture") {
-							if (val == "auto") {
-								arch = Posix.utsname ().machine;
-							} else {
-								arch = val;
+							foreach (unowned string arch in val.split (" ")) {
+								if (val == "auto") {
+									architectures.append (Posix.utsname ().machine);
+								} else {
+									architectures.append (arch);
+								}
 							}
 						} else if (key == "UseSysLog") {
 							usesyslog = 1;
