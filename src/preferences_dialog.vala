@@ -66,11 +66,11 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.CheckButton check_aur_updates_checkbutton;
 		[GtkChild]
-		Gtk.Switch aur_keep_pkgs_button;
+		unowned Gtk.Switch aur_keep_pkgs_button;
 		[GtkChild]
-		Gtk.Label aur_move_dir_label;
+		unowned Gtk.Label aur_move_dir_label;
 		[GtkChild]
-		Gtk.FileChooserButton aur_move_dir_file_chooser;
+		unowned Gtk.FileChooserButton aur_move_dir_file_chooser;
 #endif
 		[GtkChild]
 		Gtk.Label cache_keep_nb_label;
