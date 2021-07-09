@@ -24,60 +24,60 @@ namespace Pamac {
 	class PreferencesDialog : Gtk.Dialog {
 
 		[GtkChild]
-		Gtk.Switch remove_unrequired_deps_button;
+		unowned Gtk.Switch remove_unrequired_deps_button;
 		[GtkChild]
-		Gtk.Switch update_files_db_button;
+		unowned Gtk.Switch update_files_db_button;
 		[GtkChild]
-		Gtk.Switch check_space_button;
+		unowned Gtk.Switch check_space_button;
 		[GtkChild]
-		Gtk.Switch check_updates_button;
+		unowned Gtk.Switch check_updates_button;
 		[GtkChild]
-		Gtk.Label refresh_period_label;
+		unowned Gtk.Label refresh_period_label;
 		[GtkChild]
-		Gtk.SpinButton refresh_period_spin_button;
+		unowned Gtk.SpinButton refresh_period_spin_button;
 		[GtkChild]
-		Gtk.CheckButton no_update_hide_icon_checkbutton;
+		unowned Gtk.CheckButton no_update_hide_icon_checkbutton;
 		[GtkChild]
-		Gtk.Box ignorepkgs_box;
+		unowned Gtk.Box ignorepkgs_box;
 		[GtkChild]
-		Gtk.TreeView ignorepkgs_treeview;
+		unowned Gtk.TreeView ignorepkgs_treeview;
 		[GtkChild]
-		Gtk.Box mirrors_config_box;
+		unowned Gtk.Box mirrors_config_box;
 		[GtkChild]
-		Gtk.ComboBoxText mirrors_country_comboboxtext;
+		unowned Gtk.ComboBoxText mirrors_country_comboboxtext;
 		[GtkChild]
-		Gtk.ComboBoxText mirrors_list_generation_method_comboboxtext;
+		unowned Gtk.ComboBoxText mirrors_list_generation_method_comboboxtext;
 		[GtkChild]
-		Gtk.Button generate_mirrors_list_button;
+		unowned Gtk.Button generate_mirrors_list_button;
 #if DISABLE_AUR
 		[GtkChild]
-		Gtk.Stack stack;
+		unowned Gtk.Stack stack;
 		[GtkChild]
-		Gtk.Box aur_config_box;
+		unowned Gtk.Box aur_config_box;
 #else
 		[GtkChild]
-		Gtk.Switch enable_aur_button;
+		unowned Gtk.Switch enable_aur_button;
 		[GtkChild]
-		Gtk.CheckButton search_aur_checkbutton;
+		unowned Gtk.CheckButton search_aur_checkbutton;
 		[GtkChild]
-		Gtk.Label aur_build_dir_label;
+		unowned Gtk.Label aur_build_dir_label;
 		[GtkChild]
-		Gtk.FileChooserButton aur_build_dir_file_chooser;
+		unowned Gtk.FileChooserButton aur_build_dir_file_chooser;
 		[GtkChild]
-		Gtk.CheckButton check_aur_updates_checkbutton;
+		unowned Gtk.CheckButton check_aur_updates_checkbutton;
 #endif
 		[GtkChild]
-		Gtk.Label cache_keep_nb_label;
+		unowned Gtk.Label cache_keep_nb_label;
 		[GtkChild]
-		Gtk.SpinButton cache_keep_nb_spin_button;
+		unowned Gtk.SpinButton cache_keep_nb_spin_button;
 		[GtkChild]
-		Gtk.CheckButton cache_only_uninstalled_checkbutton;
+		unowned Gtk.CheckButton cache_only_uninstalled_checkbutton;
 		[GtkChild]
-		Gtk.ColorButton terminal_background;
+		unowned Gtk.ColorButton terminal_background;
 		[GtkChild]
-		Gtk.ColorButton terminal_foreground;
+		unowned Gtk.ColorButton terminal_foreground;
 		[GtkChild]
-		Gtk.FontButton terminal_font;
+		unowned Gtk.FontButton terminal_font;
 
 		Gtk.ListStore ignorepkgs_liststore;
 		Transaction transaction;

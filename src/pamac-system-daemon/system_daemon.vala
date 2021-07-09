@@ -1939,8 +1939,8 @@ private int cb_fetch (void *ctx, string fileurl, string localpath, int force) {
 				// start from scratch only download if our local is out of date.
 				system_daemon.curl.setopt (Curl.Option.TIMECONDITION, Curl.TimeCond.IFMODSINCE);
 				FileInfo info = destfile.query_info ("time::modified", 0);
-				TimeVal time = info.get_modification_time ();
-				system_daemon.curl.setopt (Curl.Option.TIMEVALUE, time.tv_sec);
+				DateTime time = info.get_modification_date_time ();
+				system_daemon.curl.setopt (Curl.Option.TIMEVALUE, time.to_unix());
 			} else if (tempfile.query_exists ()) {
 				// a previous partial download exists, resume from end of file.
 				FileInfo info = tempfile.query_info ("standard::size", 0);
