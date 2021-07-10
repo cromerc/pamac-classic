@@ -4,7 +4,7 @@ cfg_pamac.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'
 cfg_pamac.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac.set('RELEASE_NAME', 'pamac')
 cfg_pamac.set('PREFIX', get_option('prefix'))
-cfg_pamac.set('VERSION', '7.2.1')
+cfg_pamac.set('VERSION', '7.3.0')
 cfg_pamac.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(
@@ -70,7 +70,7 @@ Pamac_library = shared_library('Pamac', pamac_sources,
     vala_args: pamac_vala_args,
     c_args: pamac_c_args,
     link_args: pamac_link_args,
-    version: '7.2.1',
+    version: '7.3.0',
     soversion: '7',
     install: true,
     install_dir: [true, true, true, true])
@@ -100,7 +100,7 @@ pamac_requires += ['vte-2.91']
 pamac_requires += ['x11']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : Pamac_library,
-	version : '7.2.1',
+	version : '7.3.0',
 	name : 'Pamac',
 	filebase : 'Pamac',
 	description : 'Pamac',

@@ -1,7 +1,7 @@
 /*
  *  Vala bindings for libalpm
  *
- *  Copyright (C) 2014-2019 Guillaume Benoit <guillaume@manjaro.org>
+ *  Copyright (C) 2014-2020 Guillaume Benoit <guillaume@manjaro.org>
  *  Copyright (c) 2011 Rémy Oudompheng <remy@archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@ namespace Alpm {
 
 	[SimpleType]
 	[CCode (cname = "alpm_time_t", has_type_id = false)]
-	public struct Time : uint64 {}
+	public struct Time : int64 {}
 
 	/**
 	* Library
@@ -65,13 +65,20 @@ namespace Alpm {
 		public unowned string root {
 			[CCode (cname = "alpm_option_get_root")] get;
 		}
+
 		public unowned string dbpath {
 			[CCode (cname = "alpm_option_get_dbpath")] get;
 		}
-		public unowned string arch {
-			[CCode (cname = "alpm_option_get_arch")] get;
-			[CCode (cname = "alpm_option_set_arch")] set;
+
+		public unowned Alpm.List<unowned string> architectures {
+			[CCode (cname = "alpm_option_get_architectures")] get;
+			[CCode (cname = "alpm_option_set_architectures")] set;
 		}
+		[CCode (cname = "alpm_option_add_architecture")]
+		public int add_architecture(string path);
+		[CCode (cname = "alpm_option_remove_architecture")]
+		public int remove_architecture(string path);
+
 		public unowned Alpm.List<unowned string> cachedirs {
 			[CCode (cname = "alpm_option_get_cachedirs")] get;
 			[CCode (cname = "alpm_option_set_cachedirs")] set;
@@ -103,18 +110,22 @@ namespace Alpm {
 			[CCode (cname = "alpm_option_get_logfile")] get;
 			[CCode (cname = "alpm_option_set_logfile")] set;
 		}
+
 		public unowned string lockfile {
 			[CCode (cname = "alpm_option_get_lockfile")] get;
 		}
+
 		public unowned string gpgdir {
 			[CCode (cname = "alpm_option_get_gpgdir")] get;
 			[CCode (cname = "alpm_option_set_gpgdir")] set;
 		}
+
 		public int usesyslog {
 			[CCode (cname = "alpm_option_get_usesyslog")] get;
 			/** Sets whether to use syslog (0 is FALSE, TRUE otherwise). */
 			[CCode (cname = "alpm_option_set_usesyslog")] set;
 		}
+
 		public unowned Alpm.List<unowned string> noupgrades {
 			[CCode (cname = "alpm_option_get_noupgrades")] get;
 			[CCode (cname = "alpm_option_set_noupgrades")] set;
@@ -150,7 +161,7 @@ namespace Alpm {
 		}
 		[CCode (cname = "alpm_option_add_ignoregroup")]
 		public int add_ignoregroup(string grp);
-		[CCode (cname = "alpm_option_remove_ignorepkg")]
+		[CCode (cname = "alpm_option_remove_ignoregroup")]
 		public int remove_ignoregroup(string grp);
 
 		public unowned Alpm.List<unowned Depend> assumeinstalled {
@@ -170,6 +181,11 @@ namespace Alpm {
 		public unowned string dbext {
 			[CCode (cname = "alpm_option_get_dbext")] get;
 			[CCode (cname = "alpm_option_set_dbext")] set;
+		}
+
+		public uint parallel_downloads {
+			[CCode (cname = "alpm_option_get_parallel_downloads")] get;
+			[CCode (cname = "alpm_option_set_parallel_downloads")] set;
 		}
 
 		public int defaultsiglevel {
@@ -192,33 +208,56 @@ namespace Alpm {
 				[CCode (cname = "alpm_get_syncdbs")] get;
 		}
 
-		public LogCallBack logcb {
-			[CCode (cname = "alpm_option_get_logcb")] get;
-			[CCode (cname = "alpm_option_set_logcb")] set;
-		}
-		public DownloadCallBack dlcb {
-			[CCode (cname = "alpm_option_get_dlcb")] get;
-			[CCode (cname = "alpm_option_set_dlcb")] set;
-		}
-		public FetchCallBack fetchcb {
-			[CCode (cname = "alpm_option_get_fetchcb")] get;
-			[CCode (cname = "alpm_option_set_fetchcb")] set;
-		}
-		public TotalDownloadCallBack totaldlcb {
-			[CCode (cname = "alpm_option_get_totaldlcb")] get;
-			[CCode (cname = "alpm_option_set_totaldlcb")] set;
-		}
-		public EventCallBack eventcb {
-			[CCode (cname = "alpm_option_get_eventcb")] get;
-			[CCode (cname = "alpm_option_set_eventcb")] set;
-		}
-		public QuestionCallBack questioncb {
-			[CCode (cname = "alpm_option_get_questioncb")] get;
-			[CCode (cname = "alpm_option_set_questioncb")] set;
-		}
-		public ProgressCallBack progresscb {
-			[CCode (cname = "alpm_option_get_progresscb")] get;
-			[CCode (cname = "alpm_option_set_progresscb")] set;
+		[CCode (cname = "alpm_option_get_logcb")]
+		public LogCallBack get_logcb();
+		[CCode (cname = "alpm_option_set_logcb")]
+		public int set_logcb(LogCallBack? logcb, void* ctx);
+		[CCode (cname = "alpm_option_get_logcb_ctx")]
+		public void* get_logcb_ctx();
+
+		[CCode (cname = "alpm_option_get_dlcb")]
+		public DownloadCallBack get_dlcb();
+		[CCode (cname = "alpm_option_set_dlcb")]
+		public int set_dlcb(DownloadCallBack? dlcb, void* ctx);
+		[CCode (cname = "alpm_option_get_dlcb_ctx")]
+		public void* get_dlcb_ctx();
+
+		[CCode (cname = "alpm_option_get_fetchcb")]
+		public FetchCallBack get_fetchcb();
+		[CCode (cname = "alpm_option_set_fetchcb")]
+		public int set_fetchcb(FetchCallBack? fetchcb, void* ctx);
+		[CCode (cname = "alpm_option_get_fetchcb_ctx")]
+		public void* get_fetchcb_ctx();
+
+		[CCode (cname = "alpm_option_get_eventcb")]
+		public EventCallBack get_eventcb();
+		[CCode (cname = "alpm_option_set_eventcb")]
+		public int set_eventcb(EventCallBack? eventcb, void* ctx);
+		[CCode (cname = "alpm_option_get_eventcb_ctx")]
+		public void* get_eventcb_ctx();
+
+		[CCode (cname = "alpm_option_get_questioncb")]
+		public QuestionCallBack get_questioncb();
+		[CCode (cname = "alpm_option_set_questioncb")]
+		public int set_questioncb(QuestionCallBack? questioncb, void* ctx);
+		[CCode (cname = "alpm_option_get_questioncb_ctx")]
+		public void* get_questioncb_ctx();
+
+		[CCode (cname = "alpm_option_get_progresscb")]
+		public ProgressCallBack get_progresscb();
+		[CCode (cname = "alpm_option_set_progresscb")]
+		public int set_progresscb(ProgressCallBack? progresscb, void* ctx);
+		[CCode (cname = "alpm_option_get_progresscb_ctx")]
+		public void* get_progresscb_ctx();
+
+		/** Enables/disables the download timeout.
+		 * By default, libalpm will timeout if a download has been transferring
+		 * less than 1 byte for 10 seconds.
+		 * @param disable_dl_timeout 0 for enabled, 1 for disabled
+		 * @return 0 on success, -1 on error (pm_errno is set accordingly)
+		 */
+		public uint disable_dl_timeout {
+				[CCode (cname = "alpm_option_set_disable_dl_timeout")] set;
 		}
 
 		[CCode (cname = "alpm_unlock")]
@@ -228,6 +267,15 @@ namespace Alpm {
 		public unowned DB register_syncdb(string treename, int siglevel);
 		[CCode (cname = "alpm_unregister_all_syncdbs")]
 		public int unregister_all_syncdbs();
+
+		/** Update package databases.
+		 * @param dbs list of package databases to update
+		 * @param force if true, then forces the update, otherwise update only in case
+		 * the databases aren't up to date
+		 * @return 0 on success, -1 on error (pm_errno is set accordingly)
+		 */
+		[CCode (cname = "alpm_db_update")]
+		public int update_dbs(Alpm.List<unowned DB> dbs, int force);
 
 		// the return package can be freed except if it is added to a transaction,
 		// it will be freed upon Handle.trans_release() invocation.
@@ -243,8 +291,16 @@ namespace Alpm {
 		[CCode (cname = "alpm_pkg_should_ignore")]
 		public int should_ignore(Package pkg);
 
+		/** Fetch a list of remote packages.
+		 * @param urls list of package URLs to download
+		 * @param fetched list of filepaths to the fetched packages, each item
+		 *    corresponds to one in `urls` list. This is an output parameter,
+		 *    the caller should provide a pointer to an empty list
+		 *    and the callee fills the list with data.
+		 * @return 0 on success or -1 on failure
+		 */
 		[CCode (cname = "alpm_fetch_pkgurl")]
-		public string? fetch_pkgurl(string url);
+		public int fetch_pkgurl(Alpm.List<string> urls, out Alpm.List<string> fetched);
 
 		[CCode (cname = "alpm_find_dbs_satisfier")]
 		public unowned Package? find_dbs_satisfier(Alpm.List<unowned DB> dbs, string depstring);
@@ -370,12 +426,9 @@ namespace Alpm {
 		public int add_server(string url);
 		public int remove_server(string url);
 
-		[CCode (instance_pos = 1.1)]
-		public int update(int force);
-
 		public unowned Package? get_pkg(string name);
 		public unowned Group? get_group(string name);
-		public Alpm.List<unowned Package> search(Alpm.List<unowned string> needles);
+		public int search(Alpm.List<unowned string> needles, out Alpm.List<unowned Package> ret);
 
 		public int check_pgp_signature(out SigList siglist);
 	}
@@ -460,10 +513,10 @@ namespace Alpm {
 			[CCode (cname = "alpm_pkg_get_optdepends")] get;
 		}
 		public unowned Alpm.List<unowned Depend> checkdepends {
-			[CCode (cname = "alpm_pkg_get_depends")] get;
+			[CCode (cname = "alpm_pkg_get_checkdepends")] get;
 		}
 		public unowned Alpm.List<unowned Depend> makedepends {
-			[CCode (cname = "alpm_pkg_get_optdepends")] get;
+			[CCode (cname = "alpm_pkg_get_makedepends")] get;
 		}
 		public unowned Alpm.List<unowned Depend> conflicts {
 			[CCode (cname = "alpm_pkg_get_conflicts")] get;
@@ -755,9 +808,18 @@ namespace Alpm {
 		FUNCTION = (1 << 3)
 	}
 
-	/** Log callback */
+	/** The callback type for logging.
+	*
+	* libalpm will call this function whenever something is to be logged.
+	* many libalpm will produce log output. Additionally any calls to \link alpm_logaction
+	* \endlink will also call this callback.
+	* @param ctx user-provided context
+	* @param level the currently set loglevel
+	* @param fmt the printf like format string
+	* @param args printf like arguments
+	*/
 	[CCode (cname = "alpm_cb_log", has_type_id = false, has_target = false)]
-	public delegate void LogCallBack(LogLevel level, string fmt, va_list args);
+	public delegate void LogCallBack(void* ctx, LogLevel level, string fmt, va_list args);
 
 	namespace Event {
 		/**
@@ -802,21 +864,18 @@ namespace Alpm {
 			/** Scriptlet has printed information; See ScriptletInfo for
 			* arguments. */
 			SCRIPTLET_INFO,
-			/** Files will be downloaded from a repository. */
-			RETRIEVE_START,
-			/** Files were downloaded from a repository. */
-			RETRIEVE_DONE,
-			/** Not all files were successfully downloaded from a repository. */
-			RETRIEVE_FAILED,
-			/** A file will be downloaded from a repository; See PkgDownload
-			 * for arguments */
-			PKGDOWNLOAD_START,
-			/** A file was downloaded from a repository; See PkgDownload
-			 * for arguments */
-			PKGDOWNLOAD_DONE,
-			/** A file failed to be downloaded from a repository; See
-			 * PkgDownload for arguments */
-			PKGDOWNLOAD_FAILED,
+			/** Database files will be downloaded from a repository. */
+			DB_RETRIEVE_START,
+			/** Database files were downloaded from a repository. */
+			DB_RETRIEVE_DONE,
+			/** Not all database files were successfully downloaded from a repository. */
+			DB_RETRIEVE_FAILED,
+			/** Package files will be downloaded from a repository. */
+			PKG_RETRIEVE_START,
+			/** Package files were downloaded from a repository. */
+			PKG_RETRIEVE_DONE,
+			/** Not all package files were successfully downloaded from a repository. */
+			PKG_RETRIEVE_FAILED,
 			/** Disk space usage will be computed for a package. */
 			DISKSPACE_START,
 			/** Disk space usage was computed for a package. */
@@ -958,6 +1017,18 @@ namespace Alpm {
 			public size_t total;
 		}
 
+		/** Packages downloading about to start. */
+		[CCode (cname = "alpm_event_pkg_retrieve_t", has_type_id = false)]
+		[Compact]
+		public class PkgRetrieve {
+			/** Type of event */
+			public Type type;
+			/** Number of packages to download */
+			public size_t num;
+			/** Total size of packages to download */
+			public uint64 total_size;
+		}
+
 		/** This is an union passed to the callback, that allows the frontend to know
 		 * which type of event was triggered (via type). It is then possible to
 		 * typecast the pointer to the right structure, or use the union field, in order
@@ -1014,12 +1085,21 @@ namespace Alpm {
 			public size_t hook_run_position;
 			[CCode (cname = "hook_run.total")]
 			public size_t hook_run_total;
+			// PkgRetrieve pkg_retrieve
+			[CCode (cname = "pkg_retrieve.num")]
+			public size_t pkg_retrieve_num;
+			[CCode (cname = "pkg_retrieve.total_size")]
+			public uint64 pkg_retrieve_total_size;
 		}
 	}
 
-	/** Event callback */
+	/** Event callback.
+	*
+	* Called when an event occurs
+	* @param ctx user-provided context
+	* @param event the event that occurred */
 	[CCode (cname = "alpm_cb_event", has_type_id = false, has_target = false)]
-	public delegate void EventCallBack (Event.Data data);
+	public delegate void EventCallBack (void* ctx, Event.Data data);
 
 	namespace Question {
 		/**
@@ -1190,9 +1270,14 @@ namespace Alpm {
 		}
 	}
 
-	/** Question callback */
+	/** Question callback.
+	*
+	* This callback allows user to give input and decide what to do during certain events
+	* @param ctx user-provided context
+	* @param question the question being asked.
+	*/
 	[CCode (cname = "alpm_cb_question", has_type_id = false, has_target = false)]
-	public delegate void QuestionCallBack (Question.Data data);
+	public delegate void QuestionCallBack (void* ctx, Question.Data data);
 
 	/** Progress */
 	[CCode (cname = "alpm_progress_t", cprefix = "ALPM_PROGRESS_")]
@@ -1209,22 +1294,79 @@ namespace Alpm {
 		KEYRING_START
 	}
 
-	/** Progress callback */
+	/** Progress callback
+	*
+	* Alert the front end about the progress of certain events.
+	* Allows the implementation of loading bars for events that
+	* make take a while to complete.
+	* @param ctx user-provided context
+	* @param progress the kind of event that is progressing
+	* @param pkg for package operations, the name of the package being operated on
+	* @param percent the percent completion of the action
+	* @param howmany the total amount of items in the action
+	* @param current the current amount of items completed
+	*/
 	[CCode (cname = "alpm_cb_progress", has_type_id = false, has_target = false)]
-	public delegate void ProgressCallBack (Progress progress, string pkgname, int percent, uint n_targets, uint current_target);
+	public delegate void ProgressCallBack (void* ctx, Progress progress, string pkgname, int percent, uint n_targets, uint current_target);
+
+	namespace Download {
+		/** File download events.
+		 * These events are reported by ALPM via download callback.
+		 */
+		[CCode (cname = "alpm_download_event_type_t", cprefix = "ALPM_DOWNLOAD_")]
+		public enum Event {
+			/** A download was started */
+			INIT,
+			/** A download made progress */
+			PROGRESS,
+			/** A download completed */
+			COMPLETED
+		}
+
+		/** Context struct for when a download starts. */
+		[CCode (cname = "alpm_download_event_init_t", has_type_id = false)]
+		[Compact]
+		public class Init {
+			/** whether this file is optional and thus the errors could be ignored */
+			public int optional;
+		}
+
+		/** Context struct for when a download progresses. */
+		[CCode (cname = "alpm_download_event_progress_t", has_type_id = false)]
+		[Compact]
+		public class Progress {
+			/** Amount of data downloaded */
+			public uint64 downloaded;
+			/** Total amount need to be downloaded */
+			public uint64 total;
+		}
+
+		/** Context struct for when a download completes. */
+		[CCode (cname = "alpm_download_event_completed_t", has_type_id = false)]
+		[Compact]
+		public class Completed {
+			/** Total bytes in file */
+			public uint64 total;
+			/** download result code:
+			 *    0 - download completed successfully
+			 *    1 - the file is up-to-date
+			 *   -1 - error
+			 */
+			public int result;
+		}
+	}
 
 	/** Type of download progress callbacks.
+	* @param ctx user-provided context
 	* @param filename the name of the file being downloaded
-	* @param xfered the number of transferred bytes
-	* @param total the total number of bytes to transfer
+	* @param event the event type
+	* @param data the event data of type alpm_download_event_*_t
 	*/
 	[CCode (cname = "alpm_cb_download", has_type_id = false, has_target = false)]
-	public delegate void DownloadCallBack (string filename, uint64 xfered, uint64 total);
-
-	[CCode (cname = "alpm_cb_totaldl", has_type_id = false, has_target = false)]
-	public delegate void TotalDownloadCallBack (uint64 total);
+	public delegate void DownloadCallBack (void* ctx, string filename, Download.Event event_type, void* event_data);
 
 	/** A callback for downloading files
+	* @param ctx user-provided context
 	* @param url the URL of the file to be downloaded
 	* @param localpath the directory to which the file should be downloaded
 	* @param force whether to force an update, even if the file is the same
@@ -1232,7 +1374,7 @@ namespace Alpm {
 	* error.
 	*/
 	[CCode (cname = "alpm_cb_fetch", has_type_id = false, has_target = false)]
-	public delegate int FetchCallBack (string url, string localpath, int force);
+	public delegate int FetchCallBack (void* ctx, string url, string localpath, int force);
 
 	/** Transaction flags */
 	[CCode (cname = "alpm_transflag_t", cprefix = "ALPM_TRANS_FLAG_")]
@@ -1354,10 +1496,8 @@ namespace Alpm {
 		[CCode (cname = "alpm_list_fn_free", has_target = false)]
 		public delegate void FreeFunc<G>(G a);
 
-		/* properties */
-		public size_t length {
-		[CCode (cname = "alpm_list_count")] get;
-		}
+		[CCode (cname = "alpm_list_count")]
+		public size_t length();
 
 		/* field */
 		public G data;

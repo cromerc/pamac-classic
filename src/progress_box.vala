@@ -26,9 +26,9 @@ namespace Pamac {
 	public class ProgressBox : Gtk.Box {
 
 		[GtkChild]
-		public Gtk.ProgressBar progressbar;
+		public unowned Gtk.ProgressBar progressbar;
 		[GtkChild]
-		public Gtk.Label action_label;
+		public unowned Gtk.Label action_label;
 
 		public ProgressBox () {
 			Object ();

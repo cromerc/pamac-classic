@@ -183,12 +183,12 @@ namespace Pamac {
 				trans_commit_finished (false);
 				return;
 			} else {
-				alpm_handle.eventcb = (Alpm.EventCallBack) cb_event;
-				alpm_handle.progresscb = (Alpm.ProgressCallBack) cb_progress;
-				alpm_handle.questioncb = (Alpm.QuestionCallBack) cb_question;
-				alpm_handle.fetchcb = (Alpm.FetchCallBack) cb_fetch;
-				alpm_handle.totaldlcb = (Alpm.TotalDownloadCallBack) cb_totaldownload;
-				alpm_handle.logcb = (Alpm.LogCallBack) cb_log;
+				alpm_handle.set_eventcb((Alpm.EventCallBack) cb_event, null);
+				alpm_handle.set_progresscb((Alpm.ProgressCallBack) cb_progress, null);
+				alpm_handle.set_questioncb((Alpm.QuestionCallBack) cb_question, null);
+				alpm_handle.set_fetchcb((Alpm.FetchCallBack) cb_fetch, null);
+				alpm_handle.set_dlcb((Alpm.DownloadCallBack) cb_download, null);
+				alpm_handle.set_logcb((Alpm.LogCallBack) cb_log, null);
 				lockfile = GLib.File.new_for_path (alpm_handle.lockfile);
 				var pamac_config = new Pamac.Config ();
 				if (pamac_config.update_files_db) {
@@ -196,12 +196,12 @@ namespace Pamac {
 				} else {
 					files_handle = alpm_config.get_handle (false);
 				}
-				files_handle.eventcb = (Alpm.EventCallBack) cb_event;
-				files_handle.progresscb = (Alpm.ProgressCallBack) cb_progress;
-				files_handle.questioncb = (Alpm.QuestionCallBack) cb_question;
-				files_handle.fetchcb = (Alpm.FetchCallBack) cb_fetch;
-				files_handle.totaldlcb = (Alpm.TotalDownloadCallBack) cb_totaldownload;
-				files_handle.logcb = (Alpm.LogCallBack) cb_log;
+				files_handle.set_eventcb((Alpm.EventCallBack) cb_event, null);
+				files_handle.set_progresscb((Alpm.ProgressCallBack) cb_progress, null);
+				files_handle.set_questioncb((Alpm.QuestionCallBack) cb_question, null);
+				files_handle.set_fetchcb((Alpm.FetchCallBack) cb_fetch, null);
+				files_handle.set_dlcb((Alpm.DownloadCallBack) cb_download, null);
+				files_handle.set_logcb((Alpm.LogCallBack) cb_log, null);
 			}
 		}
 
@@ -475,26 +475,19 @@ namespace Pamac {
 		private bool update_dbs (Alpm.Handle handle, int force) {
 			bool success = false;
 			unowned Alpm.List<unowned Alpm.DB> syncdbs = handle.syncdbs;
-			while (syncdbs != null) {
-				if (cancellable.is_cancelled ()) {
-					break;
-				}
-				unowned Alpm.DB db = syncdbs.data;
-				if (db.update (force) >= 0) {
-					// We should always succeed if at least one DB was upgraded - we may possibly
-					// fail later with unresolved deps, but that should be rare, and would be expected
-					success = true;
-				} else {
-					Alpm.Errno errnos = handle.errno ();
-					current_error.errnos = (uint) errnos;
-					if (errnos != 0) {
-						// download error details are set in cb_fetch
-						if (errnos != Alpm.Errno.EXTERNAL_DOWNLOAD) {
-							current_error.details = { Alpm.strerror (errnos) };
-						}
+			if (handle.update_dbs (syncdbs, force) >= 0) {
+				// We should always succeed if at least one DB was upgraded - we may possibly
+				// fail later with unresolved deps, but that should be rare, and would be expected
+				success = true;
+			} else {
+				Alpm.Errno errnos = handle.errno ();
+				current_error.errnos = (uint) errnos;
+				if (errnos != 0) {
+					// download error details are set in cb_fetch
+					if (errnos != Alpm.Errno.EXTERNAL_DOWNLOAD) {
+						current_error.details = { Alpm.strerror (errnos) };
 					}
 				}
-				syncdbs.next ();
 			}
 			return success;
 		}
@@ -1268,7 +1261,7 @@ namespace Pamac {
 				};
 				trans_commit_finished (false);
 			} else {
-				alpm_handle.questioncb = (Alpm.QuestionCallBack) cb_question;
+				alpm_handle.set_questioncb((Alpm.QuestionCallBack) cb_question, null);
 				lockfile = GLib.File.new_for_path (alpm_handle.lockfile);
 				// fake aur db
 				alpm_handle.register_syncdb ("aur", 0);
@@ -1720,7 +1713,7 @@ private void write_log_file (string event) {
 	}
 }
 
-private void cb_event (Alpm.Event.Data data) {
+private void cb_event (void *ctx, Alpm.Event.Data data) {
 	string[] details = {};
 	uint secondary_type = 0;
 	switch (data.type) {
@@ -1778,13 +1771,14 @@ private void cb_event (Alpm.Event.Data data) {
 		case Alpm.Event.Type.SCRIPTLET_INFO:
 			details += data.scriptlet_info_line;
 			break;
-		case Alpm.Event.Type.PKGDOWNLOAD_START:
+		case Alpm.Event.Type.PKG_RETRIEVE_START:
 			// do not emit event when download is cancelled
 			if (system_daemon.cancellable.is_cancelled ()) {
 				return;
 			}
-			details += data.pkgdownload_file;
-			break;
+			system_daemon.emit_totaldownload (data.pkg_retrieve_total_size);
+			// event will be emitted by cb_fetch
+			return;
 		case Alpm.Event.Type.OPTDEP_REMOVAL:
 			details += data.optdep_removal_pkg.name;
 			details += data.optdep_removal_optdep.compute_string ();
@@ -1804,7 +1798,7 @@ private void cb_event (Alpm.Event.Data data) {
 	system_daemon.emit_event ((uint) data.type, secondary_type, details);
 }
 
-private void cb_question (Alpm.Question.Data data) {
+private void cb_question (void *ctx, Alpm.Question.Data data) {
 	switch (data.type) {
 		case Alpm.Question.Type.INSTALL_IGNOREPKG:
 			// Do not install package in IgnorePkg/IgnoreGroup
@@ -1861,7 +1855,7 @@ private void cb_question (Alpm.Question.Data data) {
 	}
 }
 
-private void cb_progress (Alpm.Progress progress, string pkgname, int percent, uint n_targets, uint current_target) {
+private void cb_progress (void *ctx, Alpm.Progress progress, string pkgname, int percent, uint n_targets, uint current_target) {
 	if (percent == 0) {
 		system_daemon.emit_progress ((uint) progress, pkgname, (uint) percent, n_targets, current_target);
 		system_daemon.timer.start ();
@@ -1878,7 +1872,7 @@ private void cb_progress (Alpm.Progress progress, string pkgname, int percent, u
 
 private uint64 prevprogress;
 
-private int cb_download (void* data, uint64 dltotal, uint64 dlnow, uint64 ultotal, uint64 ulnow) {
+private int cb_curldownload (void* data, uint64 dltotal, uint64 dlnow, uint64 ultotal, uint64 ulnow) {
 
 	if (unlikely (system_daemon.cancellable.is_cancelled ())) {
 		return 1;
@@ -1907,7 +1901,7 @@ private int cb_download (void* data, uint64 dltotal, uint64 dlnow, uint64 ultota
 	return 0;
 }
 
-private int cb_fetch (string fileurl, string localpath, int force) {
+private int cb_fetch (void *ctx, string fileurl, string localpath, int force) {
 	if (system_daemon.cancellable.is_cancelled ()) {
 		return -1;
 	}
@@ -1917,12 +1911,14 @@ private int cb_fetch (string fileurl, string localpath, int force) {
 	var destfile = GLib.File.new_for_path (localpath + url.get_basename ());
 	var tempfile = GLib.File.new_for_path (destfile.get_path () + ".part");
 
+	system_daemon.emit_event(Alpm.Event.Type.PKG_RETRIEVE_START, 0, {url.get_basename ()});
+
 	system_daemon.curl.reset ();
 	system_daemon.curl.setopt (Curl.Option.FAILONERROR, 1L);
 	system_daemon.curl.setopt (Curl.Option.CONNECTTIMEOUT, 30L);
 	system_daemon.curl.setopt (Curl.Option.FILETIME, 1L);
 	system_daemon.curl.setopt (Curl.Option.FOLLOWLOCATION, 1L);
-	system_daemon.curl.setopt (Curl.Option.XFERINFOFUNCTION, cb_download);
+	system_daemon.curl.setopt (Curl.Option.XFERINFOFUNCTION, cb_curldownload);
 	system_daemon.curl.setopt (Curl.Option.LOW_SPEED_LIMIT, 1L);
 	system_daemon.curl.setopt (Curl.Option.LOW_SPEED_TIME, 30L);
 	system_daemon.curl.setopt (Curl.Option.NETRC, Curl.NetRCOption.OPTIONAL);
@@ -1946,8 +1942,8 @@ private int cb_fetch (string fileurl, string localpath, int force) {
 				// start from scratch only download if our local is out of date.
 				system_daemon.curl.setopt (Curl.Option.TIMECONDITION, Curl.TimeCond.IFMODSINCE);
 				FileInfo info = destfile.query_info ("time::modified", 0);
-				TimeVal time = info.get_modification_time ();
-				system_daemon.curl.setopt (Curl.Option.TIMEVALUE, time.tv_sec);
+				DateTime time = info.get_modification_date_time ();
+				system_daemon.curl.setopt (Curl.Option.TIMEVALUE, time.to_unix());
 			} else if (tempfile.query_exists ()) {
 				// a previous partial download exists, resume from end of file.
 				FileInfo info = tempfile.query_info ("standard::size", 0);
@@ -2082,11 +2078,13 @@ private int cb_fetch (string fileurl, string localpath, int force) {
 	return ret;
 }
 
-private void cb_totaldownload (uint64 total) {
-	system_daemon.emit_totaldownload (total);
+private void cb_download (void* ctx, string filename, Alpm.Download.Event event_type, void* event_data) {
+	if (event_type == Alpm.Download.Event.COMPLETED) {
+		system_daemon.emit_totaldownload (((Alpm.Download.Completed) event_data).total);
+	}
 }
 
-private void cb_log (Alpm.LogLevel level, string fmt, va_list args) {
+private void cb_log (void *ctx, Alpm.LogLevel level, string fmt, va_list args) {
 	// do not log errors when download is cancelled
 	if (system_daemon.cancellable.is_cancelled ()) {
 		return;

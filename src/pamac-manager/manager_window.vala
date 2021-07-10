@@ -53,88 +53,88 @@ namespace Pamac {
 
 		// manager objects
 		[GtkChild]
-		public Gtk.Stack main_stack;
+		public unowned Gtk.Stack main_stack;
 		[GtkChild]
-		Gtk.Button button_back;
+		unowned Gtk.Button button_back;
 		[GtkChild]
-		Gtk.MenuButton button_menu;
+		unowned Gtk.MenuButton button_menu;
 #if ENABLE_HAMBURGER
 		[GtkChild]
-		Gtk.ModelButton preferences_button;
+		unowned Gtk.ModelButton preferences_button;
 #else
 		[GtkChild]
-		Gtk.HeaderBar headerbar;
+		unowned Gtk.HeaderBar headerbar;
 #endif
 		[GtkChild]
-		Gtk.TreeView packages_treeview;
+		unowned Gtk.TreeView packages_treeview;
 		[GtkChild]
-		Gtk.TreeViewColumn packages_state_column;
+		unowned Gtk.TreeViewColumn packages_state_column;
 #if DISABLE_AUR
 		[GtkChild]
-		Gtk.ScrolledWindow aur_scrolledwindow;
+		unowned Gtk.ScrolledWindow aur_scrolledwindow;
 #else
 		[GtkChild]
-		Gtk.TreeView aur_treeview;
+		unowned Gtk.TreeView aur_treeview;
 		[GtkChild]
-		Gtk.TreeViewColumn aur_state_column;
+		unowned Gtk.TreeViewColumn aur_state_column;
 #endif
 		[GtkChild]
-		public Gtk.Stack filters_stack;
+		public unowned Gtk.Stack filters_stack;
 		[GtkChild]
-		Gtk.StackSwitcher filters_stackswitcher;
+		unowned Gtk.StackSwitcher filters_stackswitcher;
 		[GtkChild]
-		Gtk.SearchEntry search_entry;
+		unowned Gtk.SearchEntry search_entry;
 		[GtkChild]
-		Gtk.TreeView search_treeview;
+		unowned Gtk.TreeView search_treeview;
 		[GtkChild]
-		Gtk.TreeView groups_treeview;
+		unowned Gtk.TreeView groups_treeview;
 		[GtkChild]
-		Gtk.TreeView states_treeview;
+		unowned Gtk.TreeView states_treeview;
 		[GtkChild]
-		Gtk.TreeView repos_treeview;
+		unowned Gtk.TreeView repos_treeview;
 		[GtkChild]
-		Gtk.Stack packages_stack;
+		unowned Gtk.Stack packages_stack;
 		[GtkChild]
-		Gtk.StackSwitcher packages_stackswitcher;
+		unowned Gtk.StackSwitcher packages_stackswitcher;
 		[GtkChild]
-		Gtk.Label updated_label;
+		unowned Gtk.Label updated_label;
 		[GtkChild]
-		Gtk.Stack properties_stack;
+		unowned Gtk.Stack properties_stack;
 #if DISABLE_AUR
 #else
 		[GtkChild]
-		Gtk.StackSwitcher properties_stackswitcher;
+		unowned Gtk.StackSwitcher properties_stackswitcher;
 #endif
 		[GtkChild]
-		Gtk.Grid deps_grid;
+		unowned Gtk.Grid deps_grid;
 		[GtkChild]
-		Gtk.Grid details_grid;
+		unowned Gtk.Grid details_grid;
 		[GtkChild]
-		Gtk.ScrolledWindow files_scrolledwindow;
+		unowned Gtk.ScrolledWindow files_scrolledwindow;
 		[GtkChild]
-		Gtk.Label name_label;
+		unowned Gtk.Label name_label;
 		[GtkChild]
-		Gtk.Label desc_label;
+		unowned Gtk.Label desc_label;
 		[GtkChild]
-		Gtk.Label link_label;
+		unowned Gtk.Label link_label;
 		[GtkChild]
-		Gtk.Label licenses_label;
+		unowned Gtk.Label licenses_label;
 		[GtkChild]
-		Gtk.ToggleButton remove_togglebutton;
+		unowned Gtk.ToggleButton remove_togglebutton;
 		[GtkChild]
-		Gtk.ToggleButton reinstall_togglebutton;
+		unowned Gtk.ToggleButton reinstall_togglebutton;
 		[GtkChild]
-		Gtk.ToggleButton install_togglebutton;
+		unowned Gtk.ToggleButton install_togglebutton;
 		[GtkChild]
-		Gtk.TextView files_textview;
+		unowned Gtk.TextView files_textview;
 		[GtkChild]
-		Gtk.Box transaction_infobox;
+		unowned Gtk.Box transaction_infobox;
 		[GtkChild]
-		Gtk.Button details_button;
+		unowned Gtk.Button details_button;
 		[GtkChild]
-		Gtk.Button apply_button;
+		unowned Gtk.Button apply_button;
 		[GtkChild]
-		Gtk.Button cancel_button;
+		unowned Gtk.Button cancel_button;
 
 		// menu
 		Gtk.Menu right_click_menu;
