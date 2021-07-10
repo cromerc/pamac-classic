@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2020-03-29 21:48-0300\n"
+"Report-Msgid-Bugs-To: chris@cromer.cl\n"
+"POT-Creation-Date: 2021-07-10 15:58-0400\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Hindi (India) (http://www.transifex.com/manjarolinux/manjaro-"
@@ -588,6 +588,10 @@ msgid "Build directory"
 msgstr ""
 
 #: ../src/preferences_dialog.vala
+msgid "Package directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr ""
 
@@ -771,6 +775,10 @@ msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates from AUR"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Keep built packages"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui

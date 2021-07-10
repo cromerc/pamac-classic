@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pamac\n"
-"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2021-07-10 13:27-0400\n"
+"Report-Msgid-Bugs-To: chris@cromer.cl\n"
+"POT-Creation-Date: 2021-07-10 15:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -587,6 +587,10 @@ msgid "Build directory"
 msgstr ""
 
 #: ../src/preferences_dialog.vala
+msgid "Package directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr ""
 
@@ -770,6 +774,10 @@ msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates from AUR"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Keep built packages"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui

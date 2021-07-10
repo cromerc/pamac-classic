@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
+"Report-Msgid-Bugs-To: chris@cromer.cl\n"
 "POT-Creation-Date: 2020-03-29 21:48-0300\n"
 "PO-Revision-Date: 2021-07-08 16:25+0200\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
