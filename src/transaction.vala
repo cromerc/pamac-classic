@@ -1404,7 +1404,9 @@ namespace Pamac {
 												if (path != "" && !(path in built_pkgs)) {
 													built_pkgs += path;
 													if(aur_keep_pkgs) {
-														yield spawn_in_term ({"cp", path, aur_move_dir});
+														File pkg_file = GLib.File.new_for_path (path);
+														File target_file = GLib.File.new_build_filename (aur_move_dir, pkg_file.get_basename());
+														pkg_file.copy (target_file, OVERWRITE);
 													}
 												}
 											}
@@ -1412,6 +1414,9 @@ namespace Pamac {
 									} catch (SpawnError e) {
 										stderr.printf ("SpawnError: %s\n", e.message);
 										status = 1;
+									} catch (GLib.Error e) {
+										stderr.printf ("GLib Error: %s\n", e.message);
+										status = 1;										
 									}
 								}
 							}
