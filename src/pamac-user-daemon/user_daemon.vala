@@ -214,9 +214,9 @@ namespace Pamac {
 				unowned Alpm.Package alpm_pkg = pkgcache.data;
 				if (alpm_pkg.reason == Alpm.Package.Reason.DEPEND) {
 					Alpm.List<string> requiredby = alpm_pkg.compute_requiredby ();
-					if (requiredby.length == 0) {
+					if (requiredby.length () == 0) {
 						Alpm.List<string> optionalfor = alpm_pkg.compute_optionalfor ();
-						if (optionalfor.length == 0) {
+						if (optionalfor.length () == 0) {
 							pkgs += initialise_pkg_struct (alpm_pkg);
 						} else {
 							optionalfor.free_inner (GLib.free);
@@ -280,22 +280,26 @@ namespace Pamac {
 			foreach (unowned string part in splitted) {
 				needles.add (part);
 			}
-			Alpm.List<unowned Alpm.Package> result = alpm_handle.localdb.search (needles);
+			Alpm.List<unowned Alpm.Package> result;
+			// TODO: handle return value
+			alpm_handle.localdb.search (needles, out result);
 			Alpm.List<unowned Alpm.Package> syncpkgs = null;
 			unowned Alpm.List<unowned Alpm.DB> syncdbs = alpm_handle.syncdbs;
 			while (syncdbs != null) {
 				unowned Alpm.DB db = syncdbs.data;
-				if (syncpkgs.length == 0) {
-					syncpkgs = db.search (needles);
+				if (syncpkgs.length () == 0) {
+					db.search (needles, out syncpkgs);
 				} else {
-					syncpkgs.join (db.search (needles).diff (syncpkgs, (Alpm.List.CompareFunc) alpm_pkg_compare_name));
+					Alpm.List<unowned Alpm.Package> newsyncpkgs = null;
+					db.search (needles, out newsyncpkgs);
+					syncpkgs.join (newsyncpkgs.diff (syncpkgs, (Alpm.List.CompareFunc) alpm_pkg_compare_name));
 				}
 				syncdbs.next ();
 			}
 			result.join (syncpkgs.diff (result, (Alpm.List.CompareFunc) alpm_pkg_compare_name));
 			// use custom sort function
 			global_search_string = search_string;
-			result.sort (result.length, (Alpm.List.CompareFunc) alpm_pkg_sort_search_by_relevance);
+			result.sort (result.length (), (Alpm.List.CompareFunc) alpm_pkg_sort_search_by_relevance);
 			return result;
 		}
 
@@ -828,29 +832,18 @@ namespace Pamac {
 			var tmp_handle = alpm_config.get_handle (false, true);
 			// refresh tmp dbs
 			unowned Alpm.List<unowned Alpm.DB> syncdbs = tmp_handle.syncdbs;
-			while (syncdbs != null) {
-				unowned Alpm.DB db = syncdbs.data;
-				db.update (0);
-				syncdbs.next ();
-			}
+			// TODO: read return value
+			tmp_handle.update_dbs(syncdbs, 0);
 			// refresh file dbs
 			var pamac_config = new Pamac.Config ();
 			if (pamac_config.update_files_db) {
 				var tmp_files_handle = alpm_config.get_handle (true, true);
 				syncdbs = tmp_files_handle.syncdbs;
-				while (syncdbs != null) {
-					unowned Alpm.DB db = syncdbs.data;
-					db.update (0);
-					syncdbs.next ();
-				}
+				tmp_files_handle.update_dbs(syncdbs, 0);
 			} else {
 				var tmp_files_handle = alpm_config.get_handle (false, true);
 				syncdbs = tmp_files_handle.syncdbs;
-				while (syncdbs != null) {
-					unowned Alpm.DB db = syncdbs.data;
-					db.update (0);
-					syncdbs.next ();
-				}
+				tmp_files_handle.update_dbs(syncdbs, 0);
 			}
 #if DISABLE_AUR
 #else

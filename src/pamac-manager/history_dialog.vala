@@ -26,7 +26,7 @@ namespace Pamac {
 	class HistoryDialog : Gtk.Dialog {
 
 		[GtkChild]
-		public Gtk.TextView textview;
+		public unowned Gtk.TextView textview;
 
 		public HistoryDialog (Gtk.ApplicationWindow window) {
 			int use_header_bar;

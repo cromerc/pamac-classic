@@ -27,7 +27,7 @@ namespace Pamac {
 	class ChooseIgnorepkgsDialog : Gtk.Dialog {
 
 		[GtkChild]
-		public Gtk.TreeView treeview;
+		public unowned Gtk.TreeView treeview;
 
 		public Gtk.ListStore pkgs_list;
 
