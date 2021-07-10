@@ -31,6 +31,8 @@ namespace Pamac {
 		public bool search_aur { get; private set; }
 		public string aur_build_dir { get; private set; }
 		public bool check_aur_updates { get; private set; }
+		public bool aur_keep_pkgs { get; private set; }
+		public string aur_move_dir { get; private set; }
 #endif
 		public uint64 keep_num_pkgs { get; private set; }
 		public bool rm_only_uninstalled { get; private set; }
@@ -92,6 +94,8 @@ namespace Pamac {
 			search_aur = settings.get_boolean ("search-in-aur");
 			check_aur_updates = settings.get_boolean ("check-aur-updates");
 			aur_build_dir = settings.get_string ("build-directory");
+			aur_keep_pkgs = settings.get_boolean("aur-keep-pkgs");
+			aur_move_dir = settings.get_string("move-directory");
 #endif
 		}
 	}
