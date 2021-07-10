@@ -43,7 +43,6 @@
     <message xml:lang="el">Απαιτείται πιστοποίηση</message>
     <message xml:lang="de">Authentifizierung erforderlich</message>
     <message xml:lang="da">Godkendelse er påkrævet</message>
-    <message xml:lang="cs">Je vyžadováno ověření</message>
     <message xml:lang="ca_ES">Cal autenticació</message>
     <message xml:lang="ca">Cal autenticació</message>
     <message xml:lang="bg">Изисква се идентификация</message>
@@ -51,6 +50,7 @@
     <message xml:lang="ast">Ríquese l'autenticación</message>
     <message xml:lang="ar">صلاحيات مطلوبة</message>
     <message xml:lang="ka">საჭიროა ავთენტიფიკაცია</message>
+    <message xml:lang="cs">Je vyžadováno ověření</message>
     <defaults>
       <allow_any>no</allow_any>
       <allow_inactive>auth_admin_keep</allow_inactive>
